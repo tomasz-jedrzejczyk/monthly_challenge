@@ -1,3 +1,3 @@
-# 🚀 Wyzwanie Miesiąca (Challenge of the Month)
+Challenge of the month
 
-Witaj w repozytorium mojego osobistego projektu **"Wyzwanie Miesiąca"**.
+I will here post my monthly education sessions.
