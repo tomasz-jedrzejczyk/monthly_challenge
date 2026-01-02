@@ -23,12 +23,12 @@ Fuzzy Logic
 A type of logic based on the concept of partial truth, where certainty factors range between 0 and 1, rather than being strictly binary
 Search Algorithms
 These systematically explore a subset of all possible states or structures until a specific goal state is reached.
-Reasoning Techniques
+Reasoning Technique
 These technologies generate conclusions from available information using logical processes
--Rule engines (which satisfy specific conditions to trigger actions).
--Deductive classifiers.
--Case-based reasoning (solving new problems based on similar past cases).
--Procedural reasoning
+-Rule engines: Set of rules that determines which specific actions should occur once certain conditions have been satisfied.
+-Deductive classifiers: Classifier that is based on the application of inference and logic to input data.
+-Case-based reasoning: Solving new problems based on similar past cases.
+-Procedural reasoning: AI technology used for constructing real-time reasoning systems.
 Machine Learning (ML) Techniques
 Involving computational techniques that enable systems to learn from data or experience.
 -Neural networks (the basis for Deep Learning).
