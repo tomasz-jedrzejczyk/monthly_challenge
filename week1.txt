@@ -31,7 +31,15 @@ These technologies generate conclusions from available information using logical
 -Procedural reasoning: AI technology used for constructing real-time reasoning systems.
 Machine Learning (ML) Techniques
 Involving computational techniques that enable systems to learn from data or experience.
--Neural networks (the basis for Deep Learning).
+-Neural networks: Uses computational techniques to enable systems to learn from data or experience rather than following explicitly programmed imperative rules.
+    *Deep Learning (DL): Specific category of machine learning that utilises Deep Neural Networks (DNN), which are defined by having multiple hidden layers of neurons.
+      Layers and Neurons: A neural network consists of nodes called neurons organised into three types of layers: 
+        Input layer that receives data,
+        Output layer that produces the final prediction, 
+        Hidden layers in between
+    *Perceptrons: The simplest form is the single-layer perceptron, which contains only one layer and one neuron.
+    *Weights and Biases: Each connection between neurons has an associated weight, while each individual neuron has a bias. These are internal variables that change as the network learns.
+    *Activation Values: A neuron's output, calculated by an activation function.
 -Support Vector Machines (SVM).
 -Decision trees and Random forests.
 -Bayesian models (statistical models using probability).
