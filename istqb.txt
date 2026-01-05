@@ -40,9 +40,13 @@ Involving computational techniques that enable systems to learn from data or exp
     *Perceptrons: The simplest form is the single-layer perceptron, which contains only one layer and one neuron.
     *Weights and Biases: Each connection between neurons has an associated weight, while each individual neuron has a bias. These are internal variables that change as the network learns.
     *Activation Values: A neuron's output, calculated by an activation function.
--Support Vector Machines (SVM).
--Decision trees and Random forests.
--Bayesian models (statistical models using probability).
--Clustering and Association algorithms.
--Linear and Logistic regression.
--Genetic algorithms
+-Support Vector Machines (SVM): mathematical technique in which data points are viewed as vectors in a multi-dimensional space, which are then separated by a hyperplane to allow for classification or regression.
+-Decision trees and Random forests:
+  *A decision tree is defined as a tree-like model where each node represents a specific decision and the branches represent the potential outcomes of those decisions
+  *A random forest is an ensemble ML technology used for tasks such as classification and regression. It operates by constructing and running many individual decision trees simultaneously
+-Bayesian models: operates by considering "before and after" probability distributions as the parameters of the statistical model.
+-Clustering and Association algorithma: ability to group data points based on inherent similarities or common characteristics.
+-Linear and Logistic regression:
+  *Linear Regression is used for predicting continuous numerical values.
+  *Logistic Regression is used for predicting categorical outputs, mostly binary classification.
+-Genetic algorithms: population-based evolutionary optimization technique inspired by the principles of natural selection and genetics. It works by iteratively evolving a population of candidate solutions using biologically motivated operators such as selection, crossover and mutation to find optimal or near-optimal solutions to complex problems where traditional optimization techniques are ineffective.
