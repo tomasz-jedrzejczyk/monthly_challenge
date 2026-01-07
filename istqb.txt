@@ -50,3 +50,19 @@ Involving computational techniques that enable systems to learn from data or exp
   *Linear Regression is used for predicting continuous numerical values.
   *Logistic Regression is used for predicting categorical outputs, mostly binary classification.
 -Genetic algorithms: population-based evolutionary optimization technique inspired by the principles of natural selection and genetics. It works by iteratively evolving a population of candidate solutions using biologically motivated operators such as selection, crossover and mutation to find optimal or near-optimal solutions to complex problems where traditional optimization techniques are ineffective.
+
+Frameworks and Hardware
+AI development frameworks are specialised tools and libraries that support the creation, training, and deployment of ML models. They handle various activities, including data preparation, algorithm selection, and the compilation of models to run on specific processors:
+-TensorFlow: An open-source Google framework based on data flow graphs designed for scalable machine learning
+-PyTorch: Operated by Facebook, this ML library is widely used for Natural Language Processing (NLP) and image processing
+-Keras: A high-level Python API that can run on top of other toolkits like TensorFlow
+-scikit-learn: A popular open-source library specifically for the Python programming language
+-Specialised Toolkits: Amazon utilizes Apache MxNet for AWS, while Microsoft provides the Cognitive Toolkit (CNTK)
+Hardware for AI prioritises massively parallel (concurrent) processing and the ability to work with large data structures for matrix multiplication
+-Low-Precision Arithmetic: Probabilistic AI systems do not require exact calculations, so they often use 8-bit instead of 32-bit computation to increase speed and lower energy consumption
+-Parallelism: Neural networks require thousands of simultaneous calculations, making hardware with high core counts essential
+Processor Types
+-GPUs (Graphical Processing Units): Originally designed for graphics, GPUs have thousands of cores and typically outperform CPUs in ML pattern recognition tasks
+-AI-Specific Processors (ASICs/SoC): Custom hardware like Google’s TPU (Tensor Processing Unit), Intel’s Nervana, or Mobileye’s EyeQ are designed for high-performance data management and in-memory processing
+-Neuromorphic Processors: A new generation of hardware currently under development that attempts to mimic biological neurons rather than following the traditional von Neumann architecture
+-raining vs. Deployment: It is common to train models in the cloud using high-power hardware and then deploy the model to edge computing devices (like smartphones using Apple’s Bionic or Huawei’s Kirin chips) for operational use
