@@ -86,8 +86,17 @@ Microsoft Azure Cognitive Search- Providing cloud-based search units based on st
 
 Pre-Trained Models and Transfer Learning
 A pre-trained model is defined as a machine learning (ML) model that was already trained before it was obtained
-Purpose and Benefits: Building a model from scratch is resource-intensive; data preparation often consumes 43% of the workflow effort, and training requires significant computing power. Using a pre-trained model is cheaper and often more effective as it provides a foundation that can be expanded or focused for a specific task
-Availability: These models are generally only available for a limited number of technologies, specifically neural networks and random forests
-Examples: Common examples include the ImageNet dataset (which contains over 14 million classified images), academic models like Inception, AlexNet, and MobileNet for image classification, and BERT for Natural Language Processing (NLP)
-Deployment: They can be embedded directly into an AI-based system or accessed via a service provider (AIaaS)
+Purpose and Benefits- Building a model from scratch is resource-intensive; data preparation often consumes 43% of the workflow effort, and training requires significant computing power. Using a pre-trained model is cheaper and often more effective as it provides a foundation that can be expanded or focused for a specific task
+Availability- These models are generally only available for a limited number of technologies, specifically neural networks and random forests
+Examples- Common examples include the ImageNet dataset (which contains over 14 million classified images), academic models like Inception, AlexNet, and MobileNet for image classification, and BERT for Natural Language Processing (NLP)
+Deployment- They can be embedded directly into an AI-based system or accessed via a service provider (AIaaS)
 Transfer learning is a technique used to modify a pre-trained ML model to perform a different but related task
+Mechanism in Deep Learning- In deep neural networks, the early layers typically handle basic tasks, while the later layers, which handle specialised tasks, are retrained to meet the unique requirements of the new classifier.
+Effectiveness- The success of this approach depends heavily on the similarity between the original and the new functions. For instance, modifying a model that identifies cat species to identify dog breeds is effective, whereas using it to identify human accents is likely to be unsuccessful.
+Risks and Challenges
+Inherited Defects and Bias- Shortsightedness or inappropriate biases present in the original model are likely to be inherited by those who reuse it
+Security Vulnerabilities- Models created through transfer learning are highly sensitive to the same adversarial attacks as the original model
+Transparency and Mismatch- These models may lack transparency compared to internally developed ones. Furthermore, differences between the data preparation steps used for the original model and those used for the new system can adversely affect functional performance
+Mitigation- The sources note that these risks are more easily managed if the pre-trained model is supported by thorough documentation
+
+Standards and Regulations
