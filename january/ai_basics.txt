@@ -66,3 +66,28 @@ Processor Types
 -AI-Specific Processors (ASICs/SoC): Custom hardware like Google’s TPU (Tensor Processing Unit), Intel’s Nervana, or Mobileye’s EyeQ are designed for high-performance data management and in-memory processing
 -Neuromorphic Processors: A new generation of hardware currently under development that attempts to mimic biological neurons rather than following the traditional von Neumann architecture
 -raining vs. Deployment: It is common to train models in the cloud using high-power hardware and then deploy the model to edge computing devices (like smartphones using Apple’s Bionic or Huawei’s Kirin chips) for operational use
+
+AI as a Service (AIaaS)
+Software licensing and delivery model in which AI components and development services are centrally hosted and provided to users over the web.
+Scope and Capabilities:
+Ready-to-use Models- Access to pre-trained ML models for specific tasks like speech recognition and facial recognition
+Development Support- Support for the entire ML workflow, including data preparation, storage, model training, evaluation, tuning, testing, and deployment
+Contractual and Testing Realities:
+Service Level Agreements (SLAs)- Contracts typically define commitments for uptime (e.g., 99.99%), security, and response times to fix defects
+Functional Accuracy Gap- Crucially, AIaaS SLAs rarely define functional performance metrics, such as accuracy
+Lack of Transparency- Because these services are often "black boxes," providers usually offer a free trial period in lieu of a standard acceptance period
+Integration Testing- When integrating AIaaS into a larger system, it is standard practice to perform API testing as part of component integration testing
+Risk Limitation- Due to limited liability clauses in most AIaaS contracts, these services are generally recommended for low-risk applications where a loss of service is not catastrophic
+Practical Examples:
+IBM Watson Assistant- An AI chatbot service priced by the number of monthly active users
+Google Cloud AI and ML Products- Offering document-based AI like form parsers and Optical Character Recognition (OCR), with pricing based on pages processed
+Amazon CodeGuru- An ML-based service that reviews Java code and provides quality recommendations, priced by the lines of source code analysed
+Microsoft Azure Cognitive Search- Providing cloud-based search units based on storage and throughput usage
+
+Pre-Trained Models and Transfer Learning
+A pre-trained model is defined as a machine learning (ML) model that was already trained before it was obtained
+Purpose and Benefits: Building a model from scratch is resource-intensive; data preparation often consumes 43% of the workflow effort, and training requires significant computing power. Using a pre-trained model is cheaper and often more effective as it provides a foundation that can be expanded or focused for a specific task
+Availability: These models are generally only available for a limited number of technologies, specifically neural networks and random forests
+Examples: Common examples include the ImageNet dataset (which contains over 14 million classified images), academic models like Inception, AlexNet, and MobileNet for image classification, and BERT for Natural Language Processing (NLP)
+Deployment: They can be embedded directly into an AI-based system or accessed via a service provider (AIaaS)
+Transfer learning is a technique used to modify a pre-trained ML model to perform a different but related task
