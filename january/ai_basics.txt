@@ -100,3 +100,13 @@ Transparency and Mismatch- These models may lack transparency compared to intern
 Mitigation- The sources note that these risks are more easily managed if the pre-trained model is supported by thorough documentation
 
 Standards and Regulations
+-International and National Standards
+ISO/IEC: The Joint Technical Committee (ISO/IEC JTC1) establishes international standards for AI, including the formation of a dedicated AI subcommittee (SC42) in 2017. Specifically, the ISO/IEC JTC1/SC7 subcommittee published ISO/IEC TR 29119-11, which provides guidelines focused specifically on the testing of AI-based systems
+National and Industry Bodies: The German national standards body (DIN) has developed the AI Quality Metamodel. Additionally, the IEEE and other industry groups are actively publishing standards regarding ethical issues in AI development
+-Regulatory Frameworks and Data Privacy
+GDPR: The EU-wide General Data Protection Regulation, active since May 2018, is a critical regulation for AI systems that process personal data or use automated decision-making. From a testing perspective, the GDPR mandates that personal data and predictions should be accurate enough to meet the system's purposes
+-Safety-Related AI Standards
+ISO 26262: This standard is a legal requirement for automotive software in many countries; for instance, it can be illegal to sell a vehicle if its software does not comply with these standards
+SOTIF (ISO/PAS 21448): Known as Safety of the Intended Functionality, this standard applies to road vehicles where safety depends on the system performing its intended task correctly without being triggered by unforeseen environment changes
+-Safety-Related AI Standards
+In 2019, the Organisation for Economic Co-operation and Development (OECD) issued principles for "responsible stewardship of trustworthy AI," which have been adopted by over forty countries. These principles state that AI should benefit humanity, respect the rule of law and human rights, maintain transparency, be robustly secure, and that those who operate the systems must be held accountable
