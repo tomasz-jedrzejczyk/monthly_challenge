@@ -1,0 +1,17 @@
+Flexibility: 
+This is the ability of a system to be utilised in situations that were not included in the initial system requirements
+Adaptability: 
+This refers to the ease with which a system can be modified for new situations, such as migrating to different hardware or coping with changing operational environments
+Importance in AI Systems:
+Coping with new operational environments where the system is deployed globally
+Adapting to new situations, such as variations in power sources
+Determining when to change behaviour, such as a vehicle adjusting its braking automatically upon detecting wet roads
+Self-learning systems are specifically expected to demonstrate both flexibility and adaptability to improve without constant external updates
+Requirements and Acceptance Criteria:
+Detailed Parameters- Requirements should include details of all environmental changes the system is expected to adapt to, such as specific temperature or humidity ranges
+Constraints- Specifications must set limits on the time and resources the system (for flexibility) or humans (for adaptability) may use to adjust
+Testing Criteria- Acceptance testing for adaptability involves checking if the system functions correctly and meets non-functional requirements after a change. For flexibility, testers consider how the system copes in contexts outside initial specs and the resources consumed to manage that new context
+Documentation and Testing Challenges:
+User Interfaces- When AI is used for interfaces (like computer vision), it must show increased flexibility; however, this makes it difficult to identify and document all possible interaction ways
+Documentation as Test Basis- To test these qualities, developers must provide documentation regarding the operating environment, the source of input data, and the intended adaptation process
+Simulation- Because defining test environments for undefined changes is difficult, testers often require imagination and virtual environments that can build in a level of randomness or uncertainty
