@@ -15,3 +15,18 @@ Documentation and Testing Challenges:
 User Interfaces- When AI is used for interfaces (like computer vision), it must show increased flexibility; however, this makes it difficult to identify and document all possible interaction ways
 Documentation as Test Basis- To test these qualities, developers must provide documentation regarding the operating environment, the source of input data, and the intended adaptation process
 Simulation- Because defining test environments for undefined changes is difficult, testers often require imagination and virtual environments that can build in a level of randomness or uncertainty
+
+Autonomy:
+Capability of a system to operate for prolonged periods without human oversight or control
+The Relationship Between AI and Autonomy:
+AI as an Enabler- "Smart" or "intelligent" autonomous systems typically utilise AI components to perform complex tasks
+Practical Limitations- The sources distinguish between the theoretical concept of a "fully autonomous" system—which would be entirely independent—and the reality of implementation where full autonomy is often not desired
+Requirements and Specification
+Operational Duration: Requirements must define the length of time a system is expected to perform satisfactorily without any human interference
+Ceding Control: It is critical to identify the specific events or conditions under which the system must relinquish control and return it to a human operator
+Operational Envelope: Specifications should define the "envelope" or environment in which the system is expected to remain fully autonomous
+Testing and Acceptance Criteria
+Requesting Intervention: Testers must verify if the system correctly asks for assistance when it exceeds its limits or when the environment changes
+Unnecessary Requests: The system should be tested to ensure it does not unnecessarily interrupt its autonomous operation to ask for human help when it should be capable of continuing
+Resistance to Persuasion: Acceptance criteria include checking whether a system can be "persuaded" (incorrectly triggered) to request intervention when it is intended to be independent
+Techniques: Boundary Value Analysis can be applied to the operating environment to create the specific conditions needed to test these decision-making thresholds. Virtual test environments are often used for these tests, especially for dangerous or extreme scenarios
