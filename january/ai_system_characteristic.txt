@@ -30,3 +30,17 @@ Requesting Intervention: Testers must verify if the system correctly asks for as
 Unnecessary Requests: The system should be tested to ensure it does not unnecessarily interrupt its autonomous operation to ask for human help when it should be capable of continuing
 Resistance to Persuasion: Acceptance criteria include checking whether a system can be "persuaded" (incorrectly triggered) to request intervention when it is intended to be independent
 Techniques: Boundary Value Analysis can be applied to the operating environment to create the specific conditions needed to test these decision-making thresholds. Virtual test environments are often used for these tests, especially for dangerous or extreme scenarios
+
+Evolution
+Capability of a system to improve itself in response to changing external constraints. It is considered a vital characteristic for self-learning systems, which must incorporate evolution to be successful in dynamic environments
+Forms of Managed Change
+Internal Decisions: The system learns from its own decisions and its interactions with the environment.
+Environmental Adaption: The system learns from changes in its operational environment. Ideally, the system evolves to increase its efficiency and effectiveness in both of these cases
+Constraints and Safety
+Preventing Unwanted Traits: Evolution must be limited to prevent the system from developing unwanted or harmful characteristics.
+Requirement Alignment: Any improvement or change made by the system must continue to meet the initial system requirements and constraints.
+Human Values: The evolution process must remain aligned with human values. For systems that interact physically with people, management is required to ensure that self-directed changes do not become dangerous
+Specification and Testing Challenges
+Lack of Documentation: System changes driven by self-learning are rarely documented by the system itself, which can cause regression tests to fail unless they are designed to be "future-proofed".
+Predicting Improvements: It is challenging to determine if a system should always be expected to improve or if there is a quantified minimum improvement required.
+Acceptance Criteria: To verify evolution, testers must check how well the system learns from its own experience and how it handles changes in the profile of data, often referred to as concept drift
