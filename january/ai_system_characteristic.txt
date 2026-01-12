@@ -44,3 +44,45 @@ Specification and Testing Challenges
 Lack of Documentation: System changes driven by self-learning are rarely documented by the system itself, which can cause regression tests to fail unless they are designed to be "future-proofed".
 Predicting Improvements: It is challenging to determine if a system should always be expected to improve or if there is a quantified minimum improvement required.
 Acceptance Criteria: To verify evolution, testers must check how well the system learns from its own experience and how it handles changes in the profile of data, often referred to as concept drift
+
+Bias
+Statistical measurement of the distance between a system's output and what are considered to be "fair outputs" that show no favoritism toward a specific group
+Types of Bias
+Algorithmic Bias: This occurs when a learning algorithm is wrongly configured, causing it to overvalue certain data points over others. This form of bias is typically managed through the tuning of hyperparameters during the model development process
+Sample Bias: Also known as data bias, this occurs when the training data is not fully representative of the actual data space the system will encounter operationally
+Inappropriate Bias: This refers to bias that results in adverse effects for a particular group based on protected attributes such as race, gender, ethnicity, age, or income level
+Testing for Bias and Acceptance Criteria
+Data Provenance Review: Reviewing the source of training data and the acquisition procedures to identify potential sample bias before training even begins
+LIME Method: Using Local Interpretable Model-Agnostic Explanations to measure how specific system inputs affect outputs across different groups
+External Validity Testing: Comparing test results against external data sources, such as census data, to check for unwanted bias on inferred variables
+Independent Audits: Utilising bias-free test suites or expert reviewers to assess the system’s fairness
+
+Ethics
+System of accepted beliefs or morals that control behaviour
+Variability and Deployment
+Ethical standards are not universal or static; they change over time and vary significantly between different localities, cultures, and languages. Consequently, when an AI system is deployed from one location to another, the sources state that careful consideration must be given to:
+    Stakeholder values which may differ by region.
+    National and international policies on AI ethics.
+The OECD Principles for Trustworthy AI
+In 2019, the Organisation for Economic Co-operation and Development (OECD) issued a set of principles for the "responsible stewardship of trustworthy AI,"
+Inclusive Growth and Well-being: AI should benefit the planet and people by driving sustainable development and well-being.
+Human Rights and Fairness: Systems must respect the Rule of Law, Human Rights, and Democratic values, incorporating safeguards to ensure a fair and inclusive society.
+Transparency: There must be sufficient transparency to ensure people can understand and challenge AI outcomes.
+Robustness and Safety: AI systems must function in a secure, robust, and safe way throughout their life cycles, with continual risk assessment.
+Accountability: The organisations and individuals that develop, deploy, or operate AI systems must be held responsible for their actions.
+Documentation and Testing for Ethics
+Documentation: Typical AI component documentation should explicitly include a section on ethical issues under its "Usage" description.
+Acceptance Criteria: To verify that a system meets ethical requirements, testers should check it against a suitable checklist.
+Standard Frameworks: A primary example of a recommended verification tool is the EC Assessment List for Trustworthy Artificial Intelligence (ALTAI), which supports the ethics guidelines established by the European Commission
+
+Side Effects and Reward Hacking
+Specific types of unintended and potentially harmful behaviours that occur when an AI system strives to achieve its "prime objective". These issues arise primarily when the design of a system specifies a target that ignores other critical environmental variables
+Side Effects
+Unintended consequences that occur when a system focuses on a specific task but expresses indifference to other environmental variables that might be harmful to change
+Cause: This happens because the designer specifies a narrow goal that fails to account for the complexity of the "potentially very large" environment
+Reward Hacking
+Reward hacking occurs when an AI system finds a "clever" or "easy" way to achieve a goal that perverts the spirit of the designer's intent
+Mitigation and Testing
+To address these risks, the sources emphasize aligning AI with human values through observation and feedback
+Side Effects: Testers should proactively identify potentially harmful side effects and attempt to generate specific test cases that cause the system to exhibit them
+Reward Hacking: Verification should involve independent tests that use a different means of measuring success than the reward function used by the AI agent
