@@ -1,0 +1,19 @@
+LM froms
+Supervised Learning
+This form of learning relies on the use of labeled data to create a model. During the training phase, the algorithm analyzes pairs of inputs and their corresponding output labels (e.g., an image of a dog labeled "dog") to infer the relationship between them
+Classification: This is used when the output is a discrete or categorical class. The model groups inputs into predefined classes, such as performing face recognition or object detection
+Regression: This is used when the output is a numeric and continuous variable,,. Examples include predicting a person's age or future stock prices,. The sources explicitly note that "regression" in ML is a statistical prediction method and is distinct from "regression testing" in software engineering
+Unsupervised Learning
+This form creates models using unlabeled data. Because there are no labels, the algorithm analyzes the input data to detect inherent patterns, structures, or commonalities without external guidance
+Clustering: This involves identifying similarities to sort data points into groups (clusters) based on common characteristics. A typical use case cited is grouping customers for marketing purposes
+Association: This identifies relationships, dependencies, or co-occurring items within the data. A common example is a product recommendation system analyzing shopping behavior (e.g., identifying that people who buy diapers also buy beer)
+Reinforcement Learning
+This method involves an intelligent agent learning from experience through iterative interaction with an environment. Reinforcement Learning does not use training data,. Instead, the agent learns through a process of trial and error, receiving rewards for correct decisions and punishment/penalties for incorrect ones
+Selecting a Form of ML
+• Is labeled data available? If yes, use Supervised Learning.
+    ◦ If the output is a category (e.g., "Cat" or "Dog"), use Classification.
+    ◦ If the output is a number (e.g., Price), use Regression.
+• Is the data unlabeled? If yes, use Unsupervised Learning.
+    ◦ If grouping similar data, use Clustering.
+    ◦ If finding co-occurring items, use Association.
+• Is there interaction with an environment? If the problem involves multiple states and decisions, use Reinforcement Learning.
