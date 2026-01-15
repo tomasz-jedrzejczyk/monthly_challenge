@@ -1,6 +1,11 @@
-Challenge of the month
+# Challenge of the Month
 
-1. January
-    ISTQB Certification: imforamtion that will help to pass istqb ai testing certification
-        a. ai_basics: general information regarding ai, regulations, frameworsk, tools
-        b. ai_system_characteristic
+## January
+
+### ISTQB Certification
+
+Information that will help to pass ISTQB AI Testing Certification
+
+- **ai_basics**: General information regarding AI, regulations, frameworks, tools
+- **ai_system_characteristic**: AI system characteristics and properties
+- **machine_learning_algorithms**: Machine learning algorithms overview
