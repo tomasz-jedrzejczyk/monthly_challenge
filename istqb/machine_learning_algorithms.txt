@@ -47,3 +47,26 @@ Accuracy vs. Speed: Some models are more accurate but slower to train or predict
 Resource Constraints: Limitations on available memory, particularly for embedded systems.
 Data Characteristics: The type of data (e.g., images) and the amount of data available (some models overfit easily with limited data).
 Explainability: The requirement for transparency and interpretability may rule out "black box" models in favor of simpler ones.
+
+Overfitting and Underfitting
+The two primary failure modes regarding how well a machine learning model generalizes to new data. These concepts are critical to the "Model Generation" and "Evaluation" phases of the ML workflow.
+Overfitting
+Overfitting occurs when a model fits too closely to the training dataset and fails to properly generalize to the broader population of data
+Characteristics: The model learns the detail and noise in the training data to the extent that it negatively impacts the performance of the model on new data
+Symptoms: An overfitted model performs very well on training data (or validation data) but struggles to make accurate predictions for independent, unseen test data
+Causes:
+  The model tries to fit every data point, including outliers and noise.
+  Insufficient data provided in the training datasets.
+  The model is too complex for the amount of data available.
+  Mitigation: Suggest that feature selection (removing irrelevant data or noise) can help reduce overfitting. Additionally, testing with a completely independent dataset is the primary way to detect it
+Underfitting
+Underfitting occurs when the model is not sophisticated enough to accurately fit the patterns or underlying trends in the training data
+Characteristics: The model is too simplistic. It fails to capture the underlying relationships between inputs and outputs.
+Symptoms: Unlike overfitting, an underfitted model struggles to make accurate predictions for both new data and the original training data. If a model has low accuracy on both validation and test data despite large training sets, it is likely underfitting.
+Causes:
+  The training dataset lacks the features necessary to reflect important relationships.
+  The chosen algorithm does not correctly fit the data type (e.g., creating a linear model for non-linear data).
+Testing Context
+Exploratory Testing Tours: Testers should organize specific "tours" focused on identifying overfitting and underfitting
+Data Preparation: Proper feature selection during data preparation is explicitly cited as a method to reduce overfitting
+Independent Data: The use of a holdout (test) dataset that is kept separate from training and validation is essential to detect these issues, particularly overfitting
