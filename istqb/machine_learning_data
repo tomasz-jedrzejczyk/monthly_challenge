@@ -1,0 +1,5 @@
+machine_learning_data
+Data Preparation as arguably the most critical and resource-intensive phase of the machine learning workflow. It is estimated to consume approximately 43% of the total effort, significantly more than the 17% typically spent on model selection and building
+Data preparation is the process of converting raw data into a format suitable for training and prediction, typically implemented via a data pipeline. This pipeline encompasses three primary categories of activities: Data Acquisition, Data Pre-processing, and Feature Engineering.
+
+Data Acquisition
