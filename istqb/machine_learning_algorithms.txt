@@ -39,3 +39,11 @@ If the data is labeled (has a known target or ground truth), Supervised Learning
 Classification: This is selected if the output is discrete and categorical. An example would be distinguishing between different classes of objects, such as identifying if an image contains a "Cat" or a "Dog".
 Regression: This is selected if the output is numeric and continuous in nature. An example would be predicting a price or a temperature
 Selection Based on Unlabeled Data (Unsupervised Learning)
+If the dataset provided has no output provided (unlabeled), Unsupervised Learning is the correct form. The specific sub-type is determined by the goal of the analysis
+Clustering: This is chosen if the problem involves grouping similar data together based on common characteristics.
+Association: This is chosen if the problem involves finding co-occurring data items or identifying relationships between attributes (e.g., market basket analysis).
+Factors Involved in Algorithm Selection
+Accuracy vs. Speed: Some models are more accurate but slower to train or predict.
+Resource Constraints: Limitations on available memory, particularly for embedded systems.
+Data Characteristics: The type of data (e.g., images) and the amount of data available (some models overfit easily with limited data).
+Explainability: The requirement for transparency and interpretability may rule out "black box" models in favor of simpler ones.
