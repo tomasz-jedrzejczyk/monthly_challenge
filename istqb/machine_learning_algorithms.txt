@@ -9,14 +9,6 @@ Clustering: This involves identifying similarities to sort data points into grou
 Association: This identifies relationships, dependencies, or co-occurring items within the data. A common example is a product recommendation system analyzing shopping behavior (e.g., identifying that people who buy diapers also buy beer)
 Reinforcement Learning
 This method involves an intelligent agent learning from experience through iterative interaction with an environment. Reinforcement Learning does not use training data. Instead, the agent learns through a process of trial and error, receiving rewards for correct decisions and punishment/penalties for incorrect ones
-Selecting a Form of ML
-Is labeled data available? If yes, use Supervised Learning.
-  If the output is a category (e.g., "Cat" or "Dog"), use Classification.
-  If the output is a number (e.g., Price), use Regression.
-Is the data unlabeled? If yes, use Unsupervised Learning.
- If grouping similar data, use Clustering.
- If finding co-occurring items, use Association.
-Is there interaction with an environment? If the problem involves multiple states and decisions, use Reinforcement Learning.
 
 ML Workflow
 This workflow describes the sequence of activities required to manage the development and deployment of an ML model
@@ -35,3 +27,15 @@ This workflow describes the sequence of activities required to manage the develo
 8. Test the Model: The generated model is tested using the independent test dataset (holdout dataset) to ensure it meets functional performance criteria. Non-functional tests (e.g., time to train, resource usage) are also performed here.
 9. Deploy the Model: The model is re-engineered for the target environment (e.g., embedded systems or cloud).
 10. Use, Monitor and Tune the Model: Once deployed, the model is monitored for concept drift (where the model drifts from its original performance due to evolving environments),. If drift occurs, the model may need to be re-trained with new data, potentially using A/B testing to compare the new model against the existing one,.
+
+Selecting a Form of ML
+This selection process is primarily driven by the nature of the available data and the specific problem the system aims to solve.
+Assessment of Data Availability and Interaction
+The first step in selecting a form of ML is analyzing the training data and the environment
+Interaction with an Environment: If the problem involves an intelligent agent interacting with an environment, navigating multiple states, and making decisions at each state (without utilizing traditional training data), Reinforcement Learning is the appropriate form.
+Availability of Data: If training and test data are available, the choice between Supervised and Unsupervised learning depends on whether that data is labeled.
+Selection Based on Labeled Data (Supervised Learning)
+If the data is labeled (has a known target or ground truth), Supervised Learning is selected. The specific sub-type is determined by the nature of the output label
+Classification: This is selected if the output is discrete and categorical. An example would be distinguishing between different classes of objects, such as identifying if an image contains a "Cat" or a "Dog".
+Regression: This is selected if the output is numeric and continuous in nature. An example would be predicting a price or a temperature
+Selection Based on Unlabeled Data (Unsupervised Learning)
