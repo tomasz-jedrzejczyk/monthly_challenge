@@ -1,0 +1,72 @@
+ML froms
+Supervised Learning
+This form of learning relies on the use of labeled data to create a model. During the training phase, the algorithm analyzes pairs of inputs and their corresponding output labels (e.g., an image of a dog labeled "dog") to infer the relationship between them
+Classification: This is used when the output is a discrete or categorical class. The model groups inputs into predefined classes, such as performing face recognition or object detection
+Regression: This is used when the output is a numeric and continuous variable,,. Examples include predicting a person's age or future stock prices,. The sources explicitly note that "regression" in ML is a statistical prediction method and is distinct from "regression testing" in software engineering
+Unsupervised Learning
+This form creates models using unlabeled data. Because there are no labels, the algorithm analyzes the input data to detect inherent patterns, structures, or commonalities without external guidance
+Clustering: This involves identifying similarities to sort data points into groups (clusters) based on common characteristics. A typical use case cited is grouping customers for marketing purposes
+Association: This identifies relationships, dependencies, or co-occurring items within the data. A common example is a product recommendation system analyzing shopping behavior (e.g., identifying that people who buy diapers also buy beer)
+Reinforcement Learning
+This method involves an intelligent agent learning from experience through iterative interaction with an environment. Reinforcement Learning does not use training data. Instead, the agent learns through a process of trial and error, receiving rewards for correct decisions and punishment/penalties for incorrect ones
+
+ML Workflow
+This workflow describes the sequence of activities required to manage the development and deployment of an ML model
+1. Understand the Objectives: The purpose of the model must be agreed upon with stakeholders to align with business priorities,. This step includes defining acceptance criteria and ML functional performance metrics.
+2. Select a Framework: A suitable AI development framework is chosen based on the objectives and priorities,.
+3. Select and Build the Algorithm: An ML algorithm is selected based on the data available and the objectives,. This algorithm can be manually coded or retrieved from a library.
+4. Prepare and Test Data: This is noted as the most resource-intensive activity, consuming approximately 43% of the effort, whereas model selection/building takes only about 17%,. This step involves:
+  Data acquisition, pre-processing, and feature engineering,.
+  Exploratory Data Analysis (EDA).
+  Splitting data into training, validation, and test datasets to ensure the model is trained and tested on representative operational data,.
+5. Train the Model: The selected algorithm is applied to the training data. This involves setting parameters:
+  Model Hyperparameters: Define the structure (e.g., depth of a decision tree).
+  Algorithm Hyperparameters: Control the training process (e.g., number of epochs).
+6. Evaluate the Model: The model is evaluated against the agreed performance metrics using the validation dataset,. This step often involves creating multiple models using different algorithms and choosing the best one.
+7. Tune the Model: Based on evaluation results, the model settings or attributes are adjusted (hyperparameter tuning) to improve performance,. The activities of Training, Evaluation, and Tuning collectively comprise "model generation".
+8. Test the Model: The generated model is tested using the independent test dataset (holdout dataset) to ensure it meets functional performance criteria. Non-functional tests (e.g., time to train, resource usage) are also performed here.
+9. Deploy the Model: The model is re-engineered for the target environment (e.g., embedded systems or cloud).
+10. Use, Monitor and Tune the Model: Once deployed, the model is monitored for concept drift (where the model drifts from its original performance due to evolving environments),. If drift occurs, the model may need to be re-trained with new data, potentially using A/B testing to compare the new model against the existing one,.
+
+Selecting a Form of ML
+This selection process is primarily driven by the nature of the available data and the specific problem the system aims to solve.
+Assessment of Data Availability and Interaction
+The first step in selecting a form of ML is analyzing the training data and the environment
+Interaction with an Environment: If the problem involves an intelligent agent interacting with an environment, navigating multiple states, and making decisions at each state (without utilizing traditional training data), Reinforcement Learning is the appropriate form.
+Availability of Data: If training and test data are available, the choice between Supervised and Unsupervised learning depends on whether that data is labeled.
+Selection Based on Labeled Data (Supervised Learning)
+If the data is labeled (has a known target or ground truth), Supervised Learning is selected. The specific sub-type is determined by the nature of the output label
+Classification: This is selected if the output is discrete and categorical. An example would be distinguishing between different classes of objects, such as identifying if an image contains a "Cat" or a "Dog".
+Regression: This is selected if the output is numeric and continuous in nature. An example would be predicting a price or a temperature
+Selection Based on Unlabeled Data (Unsupervised Learning)
+If the dataset provided has no output provided (unlabeled), Unsupervised Learning is the correct form. The specific sub-type is determined by the goal of the analysis
+Clustering: This is chosen if the problem involves grouping similar data together based on common characteristics.
+Association: This is chosen if the problem involves finding co-occurring data items or identifying relationships between attributes (e.g., market basket analysis).
+Factors Involved in Algorithm Selection
+Accuracy vs. Speed: Some models are more accurate but slower to train or predict.
+Resource Constraints: Limitations on available memory, particularly for embedded systems.
+Data Characteristics: The type of data (e.g., images) and the amount of data available (some models overfit easily with limited data).
+Explainability: The requirement for transparency and interpretability may rule out "black box" models in favor of simpler ones.
+
+Overfitting and Underfitting
+The two primary failure modes regarding how well a machine learning model generalizes to new data. These concepts are critical to the "Model Generation" and "Evaluation" phases of the ML workflow.
+Overfitting
+Overfitting occurs when a model fits too closely to the training dataset and fails to properly generalize to the broader population of data
+Characteristics: The model learns the detail and noise in the training data to the extent that it negatively impacts the performance of the model on new data
+Symptoms: An overfitted model performs very well on training data (or validation data) but struggles to make accurate predictions for independent, unseen test data
+Causes:
+  The model tries to fit every data point, including outliers and noise.
+  Insufficient data provided in the training datasets.
+  The model is too complex for the amount of data available.
+  Mitigation: Suggest that feature selection (removing irrelevant data or noise) can help reduce overfitting. Additionally, testing with a completely independent dataset is the primary way to detect it
+Underfitting
+Underfitting occurs when the model is not sophisticated enough to accurately fit the patterns or underlying trends in the training data
+Characteristics: The model is too simplistic. It fails to capture the underlying relationships between inputs and outputs.
+Symptoms: Unlike overfitting, an underfitted model struggles to make accurate predictions for both new data and the original training data. If a model has low accuracy on both validation and test data despite large training sets, it is likely underfitting.
+Causes:
+  The training dataset lacks the features necessary to reflect important relationships.
+  The chosen algorithm does not correctly fit the data type (e.g., creating a linear model for non-linear data).
+Testing Context
+Exploratory Testing Tours: Testers should organize specific "tours" focused on identifying overfitting and underfitting
+Data Preparation: Proper feature selection during data preparation is explicitly cited as a method to reduce overfitting
+Independent Data: The use of a holdout (test) dataset that is kept separate from training and validation is essential to detect these issues, particularly overfitting

@@ -1,0 +1,121 @@
+Flexibility: 
+This is the ability of a system to be utilised in situations that were not included in the initial system requirements
+Adaptability: 
+This refers to the ease with which a system can be modified for new situations, such as migrating to different hardware or coping with changing operational environments
+Importance in AI Systems:
+Coping with new operational environments where the system is deployed globally
+Adapting to new situations, such as variations in power sources
+Determining when to change behaviour, such as a vehicle adjusting its braking automatically upon detecting wet roads
+Self-learning systems are specifically expected to demonstrate both flexibility and adaptability to improve without constant external updates
+Requirements and Acceptance Criteria:
+Detailed Parameters- Requirements should include details of all environmental changes the system is expected to adapt to, such as specific temperature or humidity ranges
+Constraints- Specifications must set limits on the time and resources the system (for flexibility) or humans (for adaptability) may use to adjust
+Testing Criteria- Acceptance testing for adaptability involves checking if the system functions correctly and meets non-functional requirements after a change. For flexibility, testers consider how the system copes in contexts outside initial specs and the resources consumed to manage that new context
+Documentation and Testing Challenges:
+User Interfaces- When AI is used for interfaces (like computer vision), it must show increased flexibility; however, this makes it difficult to identify and document all possible interaction ways
+Documentation as Test Basis- To test these qualities, developers must provide documentation regarding the operating environment, the source of input data, and the intended adaptation process
+Simulation- Because defining test environments for undefined changes is difficult, testers often require imagination and virtual environments that can build in a level of randomness or uncertainty
+
+Autonomy:
+Capability of a system to operate for prolonged periods without human oversight or control
+The Relationship Between AI and Autonomy:
+AI as an Enabler- "Smart" or "intelligent" autonomous systems typically utilise AI components to perform complex tasks
+Practical Limitations- The sources distinguish between the theoretical concept of a "fully autonomous" system—which would be entirely independent—and the reality of implementation where full autonomy is often not desired
+Requirements and Specification
+Operational Duration: Requirements must define the length of time a system is expected to perform satisfactorily without any human interference
+Ceding Control: It is critical to identify the specific events or conditions under which the system must relinquish control and return it to a human operator
+Operational Envelope: Specifications should define the "envelope" or environment in which the system is expected to remain fully autonomous
+Testing and Acceptance Criteria
+Requesting Intervention: Testers must verify if the system correctly asks for assistance when it exceeds its limits or when the environment changes
+Unnecessary Requests: The system should be tested to ensure it does not unnecessarily interrupt its autonomous operation to ask for human help when it should be capable of continuing
+Resistance to Persuasion: Acceptance criteria include checking whether a system can be "persuaded" (incorrectly triggered) to request intervention when it is intended to be independent
+Techniques: Boundary Value Analysis can be applied to the operating environment to create the specific conditions needed to test these decision-making thresholds. Virtual test environments are often used for these tests, especially for dangerous or extreme scenarios
+
+Evolution
+Capability of a system to improve itself in response to changing external constraints. It is considered a vital characteristic for self-learning systems, which must incorporate evolution to be successful in dynamic environments
+Forms of Managed Change
+Internal Decisions: The system learns from its own decisions and its interactions with the environment.
+Environmental Adaption: The system learns from changes in its operational environment. Ideally, the system evolves to increase its efficiency and effectiveness in both of these cases
+Constraints and Safety
+Preventing Unwanted Traits: Evolution must be limited to prevent the system from developing unwanted or harmful characteristics.
+Requirement Alignment: Any improvement or change made by the system must continue to meet the initial system requirements and constraints.
+Human Values: The evolution process must remain aligned with human values. For systems that interact physically with people, management is required to ensure that self-directed changes do not become dangerous
+Specification and Testing Challenges
+Lack of Documentation: System changes driven by self-learning are rarely documented by the system itself, which can cause regression tests to fail unless they are designed to be "future-proofed".
+Predicting Improvements: It is challenging to determine if a system should always be expected to improve or if there is a quantified minimum improvement required.
+Acceptance Criteria: To verify evolution, testers must check how well the system learns from its own experience and how it handles changes in the profile of data, often referred to as concept drift
+
+Bias
+Statistical measurement of the distance between a system's output and what are considered to be "fair outputs" that show no favoritism toward a specific group
+Types of Bias
+Algorithmic Bias: This occurs when a learning algorithm is wrongly configured, causing it to overvalue certain data points over others. This form of bias is typically managed through the tuning of hyperparameters during the model development process
+Sample Bias: Also known as data bias, this occurs when the training data is not fully representative of the actual data space the system will encounter operationally
+Inappropriate Bias: This refers to bias that results in adverse effects for a particular group based on protected attributes such as race, gender, ethnicity, age, or income level
+Testing for Bias and Acceptance Criteria
+Data Provenance Review: Reviewing the source of training data and the acquisition procedures to identify potential sample bias before training even begins
+LIME Method: Using Local Interpretable Model-Agnostic Explanations to measure how specific system inputs affect outputs across different groups
+External Validity Testing: Comparing test results against external data sources, such as census data, to check for unwanted bias on inferred variables
+Independent Audits: Utilising bias-free test suites or expert reviewers to assess the system’s fairness
+
+Ethics
+System of accepted beliefs or morals that control behaviour
+Variability and Deployment
+Ethical standards are not universal or static; they change over time and vary significantly between different localities, cultures, and languages. Consequently, when an AI system is deployed from one location to another, the sources state that careful consideration must be given to:
+    Stakeholder values which may differ by region.
+    National and international policies on AI ethics.
+The OECD Principles for Trustworthy AI
+In 2019, the Organisation for Economic Co-operation and Development (OECD) issued a set of principles for the "responsible stewardship of trustworthy AI,"
+Inclusive Growth and Well-being: AI should benefit the planet and people by driving sustainable development and well-being.
+Human Rights and Fairness: Systems must respect the Rule of Law, Human Rights, and Democratic values, incorporating safeguards to ensure a fair and inclusive society.
+Transparency: There must be sufficient transparency to ensure people can understand and challenge AI outcomes.
+Robustness and Safety: AI systems must function in a secure, robust, and safe way throughout their life cycles, with continual risk assessment.
+Accountability: The organisations and individuals that develop, deploy, or operate AI systems must be held responsible for their actions.
+Documentation and Testing for Ethics
+Documentation: Typical AI component documentation should explicitly include a section on ethical issues under its "Usage" description.
+Acceptance Criteria: To verify that a system meets ethical requirements, testers should check it against a suitable checklist.
+Standard Frameworks: A primary example of a recommended verification tool is the EC Assessment List for Trustworthy Artificial Intelligence (ALTAI), which supports the ethics guidelines established by the European Commission
+
+Side Effects and Reward Hacking
+Specific types of unintended and potentially harmful behaviours that occur when an AI system strives to achieve its "prime objective". These issues arise primarily when the design of a system specifies a target that ignores other critical environmental variables
+Side Effects
+Unintended consequences that occur when a system focuses on a specific task but expresses indifference to other environmental variables that might be harmful to change
+Cause: This happens because the designer specifies a narrow goal that fails to account for the complexity of the "potentially very large" environment
+Reward Hacking
+Reward hacking occurs when an AI system finds a "clever" or "easy" way to achieve a goal that perverts the spirit of the designer's intent
+Mitigation and Testing
+To address these risks, the sources emphasize aligning AI with human values through observation and feedback
+Side Effects: Testers should proactively identify potentially harmful side effects and attempt to generate specific test cases that cause the system to exhibit them
+Reward Hacking: Verification should involve independent tests that use a different means of measuring success than the reward function used by the AI agent
+
+Explainable AI (XAI)
+Critical field of study aimed at understanding the factors that influence AI system outputs. Because most users—and sometimes even the data scientists who build them—perceive AI systems as "black boxes", XAI is essential for building the trust required for systems involving safety, privacy, or life-changing decisions
+Pillars of XAI
+Transparency: This refers to the ease with which the algorithm and training data used to generate the model can be identified. It represents the level of visibility into the system's "ingredients".
+Interpretability: This is the understandability of the underlying AI technology by various stakeholders, including the users. It focuses on whether a human can grasp the logic of the technology itself.
+Explainability: This is the ease with which users can determine how a system arrived at a particular result. While interpretability is about the technology, explainability is about the specific outcome
+The Role and Importance of XAI
+Safeguarding against bias: Understanding decisions helps identify unfair patterns.
+Compliance: Meeting regulatory standards or policy requirements, such as GDPR.
+Risk and Safety: Assessing robustness and vulnerability is significantly harder when a system lacks transparency or explainability.
+Empowerment: Providing users with agency and confidence in the system’s outputs
+Testing and Practical Challenges
+Transparency Testing: This is typically performed through reviews, comparing documented data and algorithms against the actual implementation to see how closely they match.
+Interpretability Testing: Because this is subjective, it is often measured through user surveys and questionnaires to gauge if stakeholders truly grasp the technology.
+Explainability Testing: This often involves dynamic testing using methods like LIME (Local Interpretable Model-Agnostic Explanations). LIME analyzes outputs by injecting small fluctuations into inputs to see how the results change, providing visual or quantified explanations for a model's "reasoning".
+Explainability Testing: This often involves dynamic testing using methods like LIME (Local Interpretable Model-Agnostic Explanations). LIME analyzes outputs by injecting small fluctuations into inputs to see how the results change, providing visual or quantified explanations for a model's "reasoning".
+
+Safety
+The expectation that an AI system will not lead to a state in which human life, health, property, or the environment is endangered
+The Core Challenges to AI Safety
+Non-Determinism and Probabilistic Nature: Unlike conventional software which follows strict logic rules, AI systems often provide probabilistic results,. This means a system might produce different results for the same input or make "guesses" that are usually correct but occasionally wrong, which is dangerous in critical applications like medicine or transportation,.
+Self-Learning and Evolution: Systems that learn from their operational environment change their behavior over time. If a system modifies itself to optimize a specific goal without constraints, it could evolve dangerous behaviors or "unwanted properties",.
+Lack of Explainability (XAI): Many AI models, particularly Deep Neural Networks, operate as "black boxes". If developers and users cannot understand how a system arrives at a decision, assessing its risk and verifying that it will act safely in all scenarios becomes exceptionally difficult,.
+Complexity: The internal structure of AI systems is often generated by software and is too complex for humans to comprehend, preventing effective white-box testing for safety.
+Regulatory Standards and Critical Domains
+Automotive Standards: The sources specifically cite ISO 26262 and ISO/PAS 21448 (SOTIF - Safety of the Intended Functionality) as applicable standards for road vehicles.
+Legal Mandates: In some regions, compliance with these standards is not optional; for example, it may be illegal to sell a vehicle if its software does not comply with ISO 26262.
+OECD Principles: The OECD principles for trustworthy AI state that systems must function in a "robust, secure and safe way" throughout their lifecycles, requiring continual risk assessment.
+Acceptance Criteria and Testing
+Acceptance Criteria: A key criterion is that tests attempting to force the system to cause potential harm must be unsuccessful,. This involves trying to force the system outside its operational envelope.
+Virtual Test Environments: Because testing safety-critical failures in the real world is dangerous and expensive (e.g., crashing an autonomous car), the sources strongly advocate for the use of virtual test environments,. These allow testers to simulate dangerous, extreme, or rare scenarios without risking physical harm.
+Adversarial Testing: Robustness, a key component of safety, is tested using adversarial attacks to ensure the system cannot be manipulated into making dangerous errors.

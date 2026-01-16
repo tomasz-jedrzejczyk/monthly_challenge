@@ -1,0 +1,112 @@
+What is AI?
+Artificial Intelligence is defined as the capability of an engineered system to acquire, process, and apply knowledge and skills.
+
+What is AI Effect?
+Describes how the definition of AI changes as technology advances.
+
+Categorisation - AI types:
+Narrow AI (Week AI)
+Systems programmed for a specific task with limited context, such as spam filters, chatbots, or voice assistants.
+General AI (Strong AI)
+Hypothetical systems with human-like cognitive abilities across multiple domains.
+Super AI
+Conceptual systems that exceed human intelligence. The transition from General to Super AI is known as the Technological Singularity.
+
+AI-Based vs Conventional Systems
+Conventional Systems
+Use imperative programming where humans write the code (if-then-else) to transform inputs into outputs, making the logic relatively easy to understand.
+AI-Based Systems
+Use Machine Learning (ML) to identify patterns in data to determine future reactions. This often makes the decision-making process less transparent to humans.
+
+AI Technology Categories
+Fuzzy Logic
+A type of logic based on the concept of partial truth, where certainty factors range between 0 and 1, rather than being strictly binary
+Search Algorithms
+These systematically explore a subset of all possible states or structures until a specific goal state is reached.
+Reasoning Technique
+These technologies generate conclusions from available information using logical processes
+-Rule engines: Set of rules that determines which specific actions should occur once certain conditions have been satisfied.
+-Deductive classifiers: Classifier that is based on the application of inference and logic to input data.
+-Case-based reasoning: Solving new problems based on similar past cases.
+-Procedural reasoning: AI technology used for constructing real-time reasoning systems.
+Machine Learning (ML) Techniques
+Involving computational techniques that enable systems to learn from data or experience.
+-Neural networks: Uses computational techniques to enable systems to learn from data or experience rather than following explicitly programmed imperative rules.
+    *Deep Learning (DL): Specific category of machine learning that utilises Deep Neural Networks (DNN), which are defined by having multiple hidden layers of neurons.
+      Layers and Neurons: A neural network consists of nodes called neurons organised into three types of layers: 
+        Input layer that receives data,
+        Output layer that produces the final prediction, 
+        Hidden layers in between
+    *Perceptrons: The simplest form is the single-layer perceptron, which contains only one layer and one neuron.
+    *Weights and Biases: Each connection between neurons has an associated weight, while each individual neuron has a bias. These are internal variables that change as the network learns.
+    *Activation Values: A neuron's output, calculated by an activation function.
+-Support Vector Machines (SVM): mathematical technique in which data points are viewed as vectors in a multi-dimensional space, which are then separated by a hyperplane to allow for classification or regression.
+-Decision trees and Random forests:
+  *A decision tree is defined as a tree-like model where each node represents a specific decision and the branches represent the potential outcomes of those decisions
+  *A random forest is an ensemble ML technology used for tasks such as classification and regression. It operates by constructing and running many individual decision trees simultaneously
+-Bayesian models: operates by considering "before and after" probability distributions as the parameters of the statistical model.
+-Clustering and Association algorithma: ability to group data points based on inherent similarities or common characteristics.
+-Linear and Logistic regression:
+  *Linear Regression is used for predicting continuous numerical values.
+  *Logistic Regression is used for predicting categorical outputs, mostly binary classification.
+-Genetic algorithms: population-based evolutionary optimization technique inspired by the principles of natural selection and genetics. It works by iteratively evolving a population of candidate solutions using biologically motivated operators such as selection, crossover and mutation to find optimal or near-optimal solutions to complex problems where traditional optimization techniques are ineffective.
+
+Frameworks and Hardware
+AI development frameworks are specialised tools and libraries that support the creation, training, and deployment of ML models. They handle various activities, including data preparation, algorithm selection, and the compilation of models to run on specific processors:
+-TensorFlow: An open-source Google framework based on data flow graphs designed for scalable machine learning
+-PyTorch: Operated by Facebook, this ML library is widely used for Natural Language Processing (NLP) and image processing
+-Keras: A high-level Python API that can run on top of other toolkits like TensorFlow
+-scikit-learn: A popular open-source library specifically for the Python programming language
+-Specialised Toolkits: Amazon utilizes Apache MxNet for AWS, while Microsoft provides the Cognitive Toolkit (CNTK)
+Hardware for AI prioritises massively parallel (concurrent) processing and the ability to work with large data structures for matrix multiplication
+-Low-Precision Arithmetic: Probabilistic AI systems do not require exact calculations, so they often use 8-bit instead of 32-bit computation to increase speed and lower energy consumption
+-Parallelism: Neural networks require thousands of simultaneous calculations, making hardware with high core counts essential
+Processor Types
+-GPUs (Graphical Processing Units): Originally designed for graphics, GPUs have thousands of cores and typically outperform CPUs in ML pattern recognition tasks
+-AI-Specific Processors (ASICs/SoC): Custom hardware like Google’s TPU (Tensor Processing Unit), Intel’s Nervana, or Mobileye’s EyeQ are designed for high-performance data management and in-memory processing
+-Neuromorphic Processors: A new generation of hardware currently under development that attempts to mimic biological neurons rather than following the traditional von Neumann architecture
+-raining vs. Deployment: It is common to train models in the cloud using high-power hardware and then deploy the model to edge computing devices (like smartphones using Apple’s Bionic or Huawei’s Kirin chips) for operational use
+
+AI as a Service (AIaaS)
+Software licensing and delivery model in which AI components and development services are centrally hosted and provided to users over the web.
+Scope and Capabilities:
+Ready-to-use Models- Access to pre-trained ML models for specific tasks like speech recognition and facial recognition
+Development Support- Support for the entire ML workflow, including data preparation, storage, model training, evaluation, tuning, testing, and deployment
+Contractual and Testing Realities:
+Service Level Agreements (SLAs)- Contracts typically define commitments for uptime (e.g., 99.99%), security, and response times to fix defects
+Functional Accuracy Gap- Crucially, AIaaS SLAs rarely define functional performance metrics, such as accuracy
+Lack of Transparency- Because these services are often "black boxes," providers usually offer a free trial period in lieu of a standard acceptance period
+Integration Testing- When integrating AIaaS into a larger system, it is standard practice to perform API testing as part of component integration testing
+Risk Limitation- Due to limited liability clauses in most AIaaS contracts, these services are generally recommended for low-risk applications where a loss of service is not catastrophic
+Practical Examples:
+IBM Watson Assistant- An AI chatbot service priced by the number of monthly active users
+Google Cloud AI and ML Products- Offering document-based AI like form parsers and Optical Character Recognition (OCR), with pricing based on pages processed
+Amazon CodeGuru- An ML-based service that reviews Java code and provides quality recommendations, priced by the lines of source code analysed
+Microsoft Azure Cognitive Search- Providing cloud-based search units based on storage and throughput usage
+
+Pre-Trained Models and Transfer Learning
+A pre-trained model is defined as a machine learning (ML) model that was already trained before it was obtained
+Purpose and Benefits- Building a model from scratch is resource-intensive; data preparation often consumes 43% of the workflow effort, and training requires significant computing power. Using a pre-trained model is cheaper and often more effective as it provides a foundation that can be expanded or focused for a specific task
+Availability- These models are generally only available for a limited number of technologies, specifically neural networks and random forests
+Examples- Common examples include the ImageNet dataset (which contains over 14 million classified images), academic models like Inception, AlexNet, and MobileNet for image classification, and BERT for Natural Language Processing (NLP)
+Deployment- They can be embedded directly into an AI-based system or accessed via a service provider (AIaaS)
+Transfer learning is a technique used to modify a pre-trained ML model to perform a different but related task
+Mechanism in Deep Learning- In deep neural networks, the early layers typically handle basic tasks, while the later layers, which handle specialised tasks, are retrained to meet the unique requirements of the new classifier.
+Effectiveness- The success of this approach depends heavily on the similarity between the original and the new functions. For instance, modifying a model that identifies cat species to identify dog breeds is effective, whereas using it to identify human accents is likely to be unsuccessful.
+Risks and Challenges
+Inherited Defects and Bias- Shortsightedness or inappropriate biases present in the original model are likely to be inherited by those who reuse it
+Security Vulnerabilities- Models created through transfer learning are highly sensitive to the same adversarial attacks as the original model
+Transparency and Mismatch- These models may lack transparency compared to internally developed ones. Furthermore, differences between the data preparation steps used for the original model and those used for the new system can adversely affect functional performance
+Mitigation- The sources note that these risks are more easily managed if the pre-trained model is supported by thorough documentation
+
+Standards and Regulations
+-International and National Standards
+ISO/IEC: The Joint Technical Committee (ISO/IEC JTC1) establishes international standards for AI, including the formation of a dedicated AI subcommittee (SC42) in 2017. Specifically, the ISO/IEC JTC1/SC7 subcommittee published ISO/IEC TR 29119-11, which provides guidelines focused specifically on the testing of AI-based systems
+National and Industry Bodies: The German national standards body (DIN) has developed the AI Quality Metamodel. Additionally, the IEEE and other industry groups are actively publishing standards regarding ethical issues in AI development
+-Regulatory Frameworks and Data Privacy
+GDPR: The EU-wide General Data Protection Regulation, active since May 2018, is a critical regulation for AI systems that process personal data or use automated decision-making. From a testing perspective, the GDPR mandates that personal data and predictions should be accurate enough to meet the system's purposes
+-Safety-Related AI Standards
+ISO 26262: This standard is a legal requirement for automotive software in many countries; for instance, it can be illegal to sell a vehicle if its software does not comply with these standards
+SOTIF (ISO/PAS 21448): Known as Safety of the Intended Functionality, this standard applies to road vehicles where safety depends on the system performing its intended task correctly without being triggered by unforeseen environment changes
+-Safety-Related AI Standards
+In 2019, the Organisation for Economic Co-operation and Development (OECD) issued principles for "responsible stewardship of trustworthy AI," which have been adopted by over forty countries. These principles state that AI should benefit humanity, respect the rule of law and human rights, maintain transparency, be robustly secure, and that those who operate the systems must be held accountable

@@ -1,0 +1,120 @@
+machine_learning_data
+Data Preparation as arguably the most critical and resource-intensive phase of the machine learning workflow. It is estimated to consume approximately 43% of the total effort, significantly more than the 17% typically spent on model selection and building
+Data preparation is the process of converting raw data into a format suitable for training and prediction, typically implemented via a data pipeline. This pipeline encompasses three primary categories of activities: Data Acquisition, Data Pre-processing, and Feature Engineering.
+
+Data preparation
+Data Acquisition
+Identification: Determining specifically which data types are required for training and prediction (e.g., deciding a self-driving car needs laser, video, and radar data)
+Gathering: identifying the sources (e.g., the International Monetary Fund for financial data) and establishing the channels to transmit this data to the system
+Labelling: For supervised learning, this involves enriching unlabeled data with meaningful tags (ground truth), a process that can be performed via internal teams, outsourcing, crowdsourcing, or AI-assisted methods
+Data Pre-processing
+Cleaning: Removing incorrect, duplicate, or outlier data. It also involves imputation, where missing values are replaced with estimates such as the mean, median, or mode
+Transformation: Changing the format of data (e.g., converting images or breaking down address strings). A key aspect here is scaling or normalization, which rescales numerical data to a standard range (typically between 0 and 1) to ensure consistency
+Augmentation: Increasing the number of samples in a dataset, often by modifying existing data. This is also the stage where adversarial examples are added to the training data to improve the model's robustness against attacks
+Sampling: Selecting a representative subset of a larger dataset to reduce the time and costs associated with creating the model
+Feature Engineering
+Feature Selection: Choosing only those attributes that contribute most to the model while removing irrelevant data (noise). This is critical for reducing overfitting, improving accuracy, and reducing training time
+Feature Extraction: Deriving new, informative features from existing ones. This results in smaller datasets that can generate models of comparable accuracy more quickly and cheaply
+Exploratory Data Analysis (EDA)
+Parallel to these activities, Exploratory Data Analysis (EDA) is performed. This involves analyzing data to discover inherent trends and using Data Visualization to present these patterns visually. EDA supports the overall preparation task by helping engineers understand the data's properties before modeling
+Challenges in Data Preparation
+Scalability and Automation: Creating a production data pipeline that is scalable and has reasonable performance efficiency is difficult. The operational pipeline often differs from the prototype pipeline used during training, requiring equivalence testing
+Knowledge Requirements: Effective preparation requires deep knowledge of the application domain, the data properties, and preparation techniques
+Bias: There is a significant risk of introducing sample bias during preparation if the selected data is not fully representative of the operational space
+Cost and Quality: High-quality data is difficult to obtain from multiple sources, and the process is expensive
+
+Datasets
+The Three Logical Datasets
+Training Dataset: This is used to train the model
+Validation Dataset: This is used for evaluating and subsequently tuning the model
+Test Dataset (Holdout Dataset): This is used for independent testing of the tuned model
+Data Separation and Independence
+Independence: The test dataset must be kept separate and not used in training to ensure that the model’s quality is not influenced by the test data
+Bias Risk: If the test dataset is incorporated into the training process, it will lead to bias in the evaluation of the model, rendering the test results invalid
+Splitting: Splitting data into these datasets is typically done randomly to ensure they are equivalent and representative
+Handling Limited Data
+Combined Datasets: In practice, due to data scarcity, the training and validation datasets are often derived from a single combined dataset, while the test dataset is kept separate
+Cross-Validation: If splitting the data three ways leads to insufficient training data, developers may use Cross-Validation (e.g., K-Fold Cross-Validation). This involves combining Training and Validation data and generating multiple split pairs (e.g., 80% training / 20% validation) to create several tuned models and calculate average performance
+Dataset Quality Issues
+Mislabeled Data: Data tags may be incorrect due to random errors, systemic errors (wrong instructions), translation errors, or malicious intent
+Unbalanced Data: This occurs when data is not fully representative, potentially due to inappropriate bias (race, gender), poor sensor placement, or divergent motivations of data suppliers
+Obsolete Data: Data must be up-to-date; using old financial data, for example, leads to inaccurate results
+Data Poisoning: Security issues where fraudulent or misleading data is deliberately inserted into the training set
+Incomplete or Wrong Data: Values may be missing, empty, or captured incorrectly by faulty hardware
+Privacy Issues: Datasets must respect privacy laws (such as GDPR) regarding personal information
+
+Dataset Quality Issues
+Types of Dataset Quality Issues
+1.Accuracy and Integrity Issues
+Wrong Data: Data captured incorrectly due to faulty hardware (sensors) or human entry errors (e.g., copy-paste errors)
+Incomplete Data: Missing values or empty fields, such as data omitted for a specific time interval due to system outages or human error
+Obsolete Data: Data that is no longer current. Using financial data from several years ago to predict current trends will lead to inaccurate results
+Duplicated Data: Repeated records that can unduly influence the weighting of the resultant model
+Mislabeled Data: A significant issue in supervised learning where the "ground truth" labels are incorrect. This can stem from random errors, systemic errors (poor instructions to annotators), malicious intent, or translation errors between languages
+2.Relevance and Volume Issues
+Insufficient Data: The dataset lacks the quantity required for the chosen algorithm to recognize patterns effectively
+Irrelevant Data: The inclusion of data attributes (noise) that do not relate to the problem being solved, which wastes resources and can adversely affect results
+3.Structure and Bias Issues
+Data Not Pre-processed: Data that has not been cleaned or standardized (e.g., containing outliers or inconsistent formats)
+Unbalanced Data: Data that is not fully representative of the operational space. This can result from inaccurate bias (race, gender), poor sensor placement (e.g., a facial recognition camera placed too high), or simply variable data availability
+Unfair Data: While distinct from "unbalanced", this refers to the subjective fairness of the data. Interestingly, the sources note that data might be positively biased towards minorities to support diversity; such data may be considered "fair" even if it is not statistically "balanced"
+4.Governance and Security Issues
+Privacy Issues: Failure to respect data privacy laws (like GDPR), which can lead to legal issues and security vulnerabilities
+Security Issues: The presence of fraudulent or misleading data deliberately inserted into the training set (Data Poisoning) to corrupt the model
+Impact on the ML Model
+1.Reduced Accuracy
+Cause: Defects arising from data that is wrong, incomplete, mislabeled, insufficient, obsolete, irrelevant, or not pre-processed
+Example: A model predicting house prices may fail to value a conservatory correctly if the training data for detached houses lacked that specific feature
+2.Biased Model
+Cause: Defects arising from data that is incomplete, unbalanced, unfair, or lacking diversity
+Example: If medical training data is gathered exclusively from patients of one specific gender, the resulting model will likely perform poorly for other genders
+3.Compromised Model
+Cause: Defects related to privacy and security
+Consequence: Privacy issues can lead to security vulnerabilities where hackers reverse-engineer information from the model, leading to the leakage of personal information
+
+Data quality impact
+Reduced Accuracy
+Defects classified as reduced accuracy occur when the model fails to make correct predictions due to flaws in the training data.
+Causes: This arises from data that is wrong, incomplete, mislabeled, insufficient, obsolete, irrelevant, or has not been properly pre-processed
+Example: The sources provide an example of a model designed to predict house prices. If the training data for detached houses contained little or no data regarding conservatories, the model would likely produce incorrect price predictions for that specific house type
+Mislabeled Data: In supervised learning, if the "ground truth" labels are incorrect (due to random errors, translation errors, or lack of domain knowledge), the functional performance measurements might indicate a good model during training, but the model will produce wrong outputs in operation
+Biased Model
+These defects occur when the model exhibits prejudice or skew in its decision-making, often favoring or disadvantaging specific groups.
+Causes: This results from data that is incomplete, unbalanced, unfair, or lacking in diversity
+Example: If a medical model is trained using data gathered exclusively from patients of a specific gender, the resulting model will likely have adverse effects when used to make predictions for patients of a different gender
+Algorithmic vs. Sample Bias: While bias can be introduced by the algorithm (hyperparameters), inappropriate bias is most often caused by sample bias, where the training data does not fully represent the operational data space
+Compromised Model
+These defects relate to the security and legal integrity of the model.
+Causes: This arises from data privacy issues and security vulnerabilities within the dataset
+Consequences: Privacy issues in the training data can create security vulnerabilities. These vulnerabilities may enable attackers to reverse-engineer the model to extract the original training data, leading to the leakage of private personal information
+Data Poisoning: The sources also note that fraudulent or false data deliberately inserted into the training set (a security issue) contributes to inaccuracy in the trained model
+Summary of Contributing Data Quality Issues
+The sources list specific data quality issues that directly contribute to the model defects listed above
+Unbalanced Data: Leads to bias; caused by poor sensor placement or variability in data availability
+Obsolete Data: Leads to inaccuracy; e.g., using old financial data to predict current trends
+Insufficient Data: Prevents the algorithm from recognizing patterns; this may result in a model that cannot be trained with a specific algorithm
+Irrelevant Data: Includes noise that adversely affects results and wastes resources
+
+Data Labelling
+Methods of Labelling
+Simple Categorization: In its simplest form, it may involve placing files into specific folders based on their class (e.g., separating text files of positive reviews from negative reviews)
+Annotation: This involves more detailed tagging, such as drawing rectangles (bounding boxes) around irregular objects in images to identify them,. More complex annotations may be required for 3D objects
+Approaches to Execution
+Simple Categorization: In its simplest form, it may involve placing files into specific folders based on their class (e.g., separating text files of positive reviews from negative reviews)
+Annotation: This involves more detailed tagging, such as drawing rectangles (bounding boxes) around irregular objects in images to identify them,. More complex annotations may be required for 3D objects
+Approaches to Execution
+Internal: Performed by the organization's own developers, testers, or a dedicated internal labelling team
+Outsourced: Performed by an external specialist organization
+Crowdsourced: Performed by a large group of independent individuals. To manage quality, multiple annotators may label the same data, with a decision made based on consensus
+AI-Assisted: ML tools are used to recognize, cluster, or annotate data. Humans then confirm the results or supplement them (e.g., adjusting a bounding box) in a two-step process
+Hybrid: A combination of the above. For example, an external organization might manage a crowdsourced initiative using AI-based management tools
+Reuse: It is theoretically possible to avoid labelling by reusing pre-existing, publicly available labeled datasets (e.g., from Kaggle)
+Data Quality Issues: Mislabeled Data
+While supervised learning assumes that data is labeled correctly (establishing "ground truth"), the sources emphasize that in practice, data is frequently mislabeled,. This leads to reduced accuracy in the resulting model
+Systemic Errors: Labelers receive incorrect instructions or poor training
+Subjectivity: Different annotators make conflicting judgments on data open to interpretation
+Translation Errors: Data labeled correctly in one language is mislabeled when translated to another
+Malicious Intent: Deliberate errors introduced by annotators
+Lack of Knowledge: Annotators lack the necessary domain expertise to label correctly
+Tool Defects: The software tools used for labelling contain bugs that result in incorrect labels
+Probabilistic Errors: AI-assisted labelling is probabilistic by nature and can introduce incorrect labels
