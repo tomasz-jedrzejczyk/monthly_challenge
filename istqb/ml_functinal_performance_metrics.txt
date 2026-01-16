@@ -1,0 +1,23 @@
+Confusion Matrix
+Fundamental tool used to evaluate the performance of Classification models (a type of Supervised Learning). Since a model rarely predicts correctly 100% of the time, the confusion matrix provides a structured way to visualize the relationship between the actual class (ground truth) and the class predicted by the model
+Structure of the Confusion Matrix
+True Positive (TP): The model correctly predicted the positive class.
+True Negative (TN): The model correctly predicted the negative class.
+False Positive (FP): The model incorrectly predicted the positive class (also known as a Type I error).
+False Negative (FN): The model incorrectly predicted the negative class (also known as a Type II error).
+Metrics Derived from the Confusion Matrix
+The sources detail four specific functional performance metrics that are calculated using the values from the confusion matrix. The choice of which metric to use depends heavily on the specific goals of the system and the "cost" associated with different types of errors
+Accuracy
+Definition: Measures the percentage of all classifications that were correct
+Usage: It is most applicable when the dataset is symmetric (where false positive and false negative counts and costs are similar). It is a poor choice if one class dominates the others (imbalanced datasets), as a model could achieve high accuracy simply by predicting the dominant class every time
+Precision
+Definition: Measures the proportion of predicted positives that were actually correct. It indicates how "sure" the model is when it claims a positive result.
+Usage: This is the suitable metric when the cost of False Positives is high.
+    Example: In a spam filter, marking a legitimate email as spam (False Positive) is highly undesirable. Therefore, high precision is required
+Recall (Sensitivity)
+Definition: Measures the proportion of actual positives that were correctly predicted. It indicates how well the model avoids missing positive cases.
+Usage: This is necessary when it is critical that positive cases are not missed (cost of False Negatives is high).
+    Example: In cancer detection, missing a true positive case (False Negative) can be fatal. Therefore, a high Recall score is essential
+F1-Score
+Definition: The harmonic mean of Precision and Recall. It provides a value between 0 and 1.
+Usage: This is most useful when there is an imbalance in the expected classes or when Precision and Recall are of similar importance. A score close to 1 indicates that false data has little influence on the result
