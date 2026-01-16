@@ -89,8 +89,32 @@ Causes: This arises from data privacy issues and security vulnerabilities within
 Consequences: Privacy issues in the training data can create security vulnerabilities. These vulnerabilities may enable attackers to reverse-engineer the model to extract the original training data, leading to the leakage of private personal information
 Data Poisoning: The sources also note that fraudulent or false data deliberately inserted into the training set (a security issue) contributes to inaccuracy in the trained model
 Summary of Contributing Data Quality Issues
-The sources list specific data quality issues that directly contribute to the model defects listed above:
+The sources list specific data quality issues that directly contribute to the model defects listed above
 Unbalanced Data: Leads to bias; caused by poor sensor placement or variability in data availability
 Obsolete Data: Leads to inaccuracy; e.g., using old financial data to predict current trends
 Insufficient Data: Prevents the algorithm from recognizing patterns; this may result in a model that cannot be trained with a specific algorithm
 Irrelevant Data: Includes noise that adversely affects results and wastes resources
+
+Data Labelling
+Methods of Labelling
+Simple Categorization: In its simplest form, it may involve placing files into specific folders based on their class (e.g., separating text files of positive reviews from negative reviews)
+Annotation: This involves more detailed tagging, such as drawing rectangles (bounding boxes) around irregular objects in images to identify them,. More complex annotations may be required for 3D objects
+Approaches to Execution
+Simple Categorization: In its simplest form, it may involve placing files into specific folders based on their class (e.g., separating text files of positive reviews from negative reviews)
+Annotation: This involves more detailed tagging, such as drawing rectangles (bounding boxes) around irregular objects in images to identify them,. More complex annotations may be required for 3D objects
+Approaches to Execution
+Internal: Performed by the organization's own developers, testers, or a dedicated internal labelling team
+Outsourced: Performed by an external specialist organization
+Crowdsourced: Performed by a large group of independent individuals. To manage quality, multiple annotators may label the same data, with a decision made based on consensus
+AI-Assisted: ML tools are used to recognize, cluster, or annotate data. Humans then confirm the results or supplement them (e.g., adjusting a bounding box) in a two-step process
+Hybrid: A combination of the above. For example, an external organization might manage a crowdsourced initiative using AI-based management tools
+Reuse: It is theoretically possible to avoid labelling by reusing pre-existing, publicly available labeled datasets (e.g., from Kaggle)
+Data Quality Issues: Mislabeled Data
+While supervised learning assumes that data is labeled correctly (establishing "ground truth"), the sources emphasize that in practice, data is frequently mislabeled,. This leads to reduced accuracy in the resulting model
+Systemic Errors: Labelers receive incorrect instructions or poor training
+Subjectivity: Different annotators make conflicting judgments on data open to interpretation
+Translation Errors: Data labeled correctly in one language is mislabeled when translated to another
+Malicious Intent: Deliberate errors introduced by annotators
+Lack of Knowledge: Annotators lack the necessary domain expertise to label correctly
+Tool Defects: The software tools used for labelling contain bugs that result in incorrect labels
+Probabilistic Errors: AI-assisted labelling is probabilistic by nature and can introduce incorrect labels
