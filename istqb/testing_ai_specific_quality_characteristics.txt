@@ -1,0 +1,33 @@
+The specific challenges associated with testing self-learning systems
+Unexpected Changes and Regression Issues
+The primary characteristic of a self-learning system is that it changes itself. While the initial requirements are known, information regarding the specific changes the system makes to itself is often unavailable
+Test Validity: A significant challenge is that tests which previously passed may fail after the system updates itself, or the results may change
+Regression: This creates a constant regression testing problem. Testers must design tests that remain relevant even as the system evolves, or constantly design new tests based on observed behaviors
+Complex Acceptance Criteria
+Defining what constitutes "success" for a system that changes is difficult.
+Improvement Metrics: It is often necessary to define expectations for improvement. For instance, a requirement might state that if the system changes, its functional performance must improve by a minimum percentage (e.g., 10%)
+Environmental Links: Acceptance criteria may need to be linked to specific environmental factors, requiring complex specifications and the maintenance of a continuous baseline of system performance
+Insufficient Testing Time
+A self-learning system may adapt quickly to new situations.
+Speed of Adaptation: If the system changes rapidly, there may be insufficient time to manually execute tests to verify the new behavior
+Automation Necessity: To address this, testers typically need to create tests that can run automatically immediately after the system modifies itself
+Resource Requirements
+The process of learning and adapting consumes computing resources.
+Resource Constraints: Requirements must specify acceptance criteria for the resources (e.g., memory, processing time) the system is permitted to use while learning
+Trade-offs: Testers must verify if the resource usage is justified by a measurable improvement in functionality
+Insufficient Specification of the Operational Environment
+A self-learning system reacts to its environment. If the environmental inputs are outside expected ranges (or were not represented in training data), the system may learn incorrect behaviors
+Data Poisoning: Unexpected inputs might actually be attacks (data poisoning), causing the system to mis-learn
+Test Coverage: It is difficult to predict the full range of operational changes to identify a full set of representative test cases
+Complex Test Environments
+To test the system's ability to adapt, the test environment must be capable of mimicking high-risk operational changes
+Simulation: This implies a need for complex test tools, such as fault injection, or access to diverse physical environments to manipulate sensors and inputs
+Randomness: Test environments may need to incorporate a level of randomness to simulate undefined environmental changes
+Undesirable Behavior Modifications (The "Observer Effect")
+There is a risk that the act of testing itself modifies the system.
+Gaming the Tests: If a self-learning system is subjected to the exact same tests repeatedly (e.g., a third-party system or a live production system), it may "learn" to respond effectively to those specific tests
+Long-term Impact: This adaptation to the test suite can influence the system's long-term behavior adversely, essentially overfitting to the tests rather than the real-world task
+Mitigation Strategies
+Automated Continuous Testing: Essential for systems that change faster than humans can test manually
+A/B Testing: This technique allows for the comparison of the updated system (Variant B) against the previous version (Variant A) to confirm that the self-learning has actually improved performance before the change is accepted
+Automated Regression Testing: Implementing automated regression suites that include performance comparisons against previous baselines to detect if new self-learnt functionality is unacceptable
