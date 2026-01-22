@@ -1,0 +1,148 @@
+Specification of AI-Based Systems
+Exploratory and Data-Driven Nature
+Unlike conventional systems where logic is specified before coding, AI development is often exploratory and experimental
+Data-First Approach: Projects often begin with a dataset rather than a set of logical requirements, with the goal of discovering what predictions that data can support
+Vague Goals: Consequently, requirements are often limited to high-level business goals or the desire for a prediction, rather than precise functional steps
+Delayed Acceptance Criteria: The actual accuracy of a system is usually unknown until independent tests are performed, meaning implementation often begins before precise acceptance criteria (specifications) are defined
+The Probabilistic Challenge
+Because AI systems are probabilistic (non-deterministic), they do not produce the exact same output for the same input every time, nor can they guarantee absolute correctness.
+Tolerances: Specifications cannot simply demand exact results; they must define tolerances for quality requirements, such as a permitted margin of error for prediction accuracy
+Impossible Requirements: Sample exam questions highlight that requirements demanding "100% accuracy" are practically impossible and create significant testing challenges. In contrast, a conventional requirement, such as a human override functioning within 1 second, is easily testable
+Test Oracle Problem: The probabilistic nature of these systems makes it difficult to determine the expected output, directly contributing to the Test Oracle Problem
+Complexity of Replicating Human Behavior
+A significant difficulty arises when the system's goal is to replicate or replace human capabilities.
+Subjectivity: Requirements often state the system must be "as good as" or "better than" a human. This is difficult to test because human capabilities vary widely, making the definition of a "gold standard" or oracle subjective and difficult
+Flexibility and User Interfaces
+AI systems used for user interfaces (e.g., Natural Language Processing or Computer Vision) must handle high flexibility in inputs.
+Documentation Difficulty: It is challenging to identify and document every possible way a user might interact with the system (e.g., different accents, phrasings, or visual conditions), making the specification inherently incomplete
+AI-Specific Quality Characteristics
+Specifications must explicitly address AI-specific quality characteristics that do not exist in conventional systems
+Autonomy: Defining when the system works without oversight and, crucially, the specific events that trigger the system to hand control back to a human
+Evolution/Adaptability: Specifying how the system changes over time and the constraints on that self-learning process
+Bias: Explicitly defining what constitutes unfair bias in the specific context of the system
+
+Test levels for AI-based
+Input Data Testing
+This level focuses on ensuring the quality of the data used for training and prediction, as poor data leads to poor models.
+Scope: It includes reviews, statistical techniques to check for bias, Exploratory Data Analysis (EDA) of training data, and both static and dynamic testing of the data pipeline
+Data Pipelines: The sources note that the pipeline used for training is often a prototype compared to the fully engineered automated pipeline used for operations. Therefore, testing must ensure functional equivalence between these two distinct pipelines
+Objective: The primary goal is to validate data preparation activities and detect issues like sample bias before the model is trained
+ML Model Testing
+This level treats the machine learning model as an isolated component.
+Objective: To guarantee that the model meets specified performance criteria, including ML functional performance metrics (e.g., Accuracy, Precision) and non-functional criteria appropriate for the model in isolation, such as training speed, prediction speed, and resource usage
+Optimization: It aims to confirm that the selection of frameworks, algorithms, and hyperparameters is optimal
+White-Box Testing: Where appropriate, this level may include testing to achieve white-box coverage criteria (such as neuron coverage)
+Component Testing
+The sources classify this as a conventional test level applicable to non-model components, such as communication modules and user interfaces
+Component Integration Testing
+This level verifies that system components (both AI and non-AI) interact correctly.
+Data Exchange: It tests that inputs from the data pipeline are received correctly by the model and that the model's predictions are correctly exchanged with other system components
+AI as a Service (AIaaS): If the AI functionality is provided as a service, API testing is performed at this level
+System Testing
+This level validates the entire integrated system in an environment closely representing the operational reality
+Re-testing Metrics: Crucially, ML functional performance criteria must be re-tested at this level. The sources warn that a model's performance might be adversely affected when integrated into the complete system or if the component was compressed (e.g., to fit on a mobile device)
+Non-Functional Focus: This is the primary stage for testing non-functional requirements such as robustness (e.g., adversarial testing) and interactions with hardware sensors. Sample exam questions highlight that this is the appropriate level for testing against vulnerabilities like adversarial attacks
+Acceptance Testing
+This is used to assess whether the complete system is satisfactory to the customer. The sources note that defining acceptance criteria for AI systems can be challenging due to their probabilistic nature
+
+Test Data
+Challenges in Handling Test Data
+Big Data Complexity: AI systems often consume "Big Data," characterized by high volume, high velocity, and high variety,. Creating and managing representative test data for systems that process large volumes of images or audio at high speeds is difficult,. Sample exam questions reinforce that sourcing big data with high velocity is a recognized factor that makes testing difficult
+Data Evolution (Time Sensitivity): Input data representing real-world events may need to change over time to remain valid,. A specific example provided is a facial recognition system: to test it effectively, recorded photographs may need to be artificially "aged" to represent how people look several years later
+Privacy and Security: Test data often includes personal or confidential information. This requires special techniques for sanitization, encryption, or redaction,. Furthermore, using such data often requires legal approval,. The sources note that regulations like GDPR mandate that personal data (including predictions) must be accurate and protected
+Pipeline Independence: A critical risk arises when testers use the same data acquisition and pre-processing implementation (pipeline) as the data scientists. If the tools used to collect and clean the data for testing are identical to those used for training, defects in those tools (such as systematic errors) may be masked,. Therefore, sourcing data separately is considered good practice
+Input Data Testing
+The sources define Input Data Testing as a specialized test level specific to AI systems,. This level focuses on ensuring the quality of the data before it is used for training or prediction.
+Scope: It includes reviews, statistical techniques to test for bias, and Exploratory Data Analysis (EDA) of the training data
+Data Pipeline Testing: The data pipeline (which cleans and modifies data) must be tested,. A specific challenge here is that the pipeline used for training is often a "prototype," whereas the operational pipeline is a fully engineered, automated version,. Testers must verify the functional equivalence between these two different pipelines to ensure the model behaves correctly in production
+Importance: Poor quality or non-representative test data may fail to reveal actual system defects
+Separation of Datasets
+The Holdout Set: A Test Dataset (or holdout dataset) must be kept entirely separate from the training and validation data
+Independence: This dataset is used to independently verify that the model meets functional performance criteria (like Accuracy or Precision),. If the test data is exposed to the model during the training process, the evaluation will be biased and invalid
+Data Quality and Acceptance Criteria
+The availability and quality of test data directly impact the ability to define acceptance criteria.
+Untrustworthy Inputs: Documentation regarding the source of input data (and its metadata) is required to test the functional correctness of the system when it receives "untrustworthy inputs"
+Bias Testing: Understanding the data source is essential for detecting explicit or implicit sample bias
+Concept Drift: Systems must be tested against concept drift (where the operational data profile changes over time). This requires re-testing with up-to-date data to ensure the model remains accurate
+
+Automation Bias(complacency bias)
+This bias presents a significant challenge because it can compromise human judgment, potentially leading to decisions of lower quality than those made without AI assistance
+Over-Reliance on Recommendations
+The first form occurs when a human accepts the system's recommendations while failing to consider other information sources, including their own senses
+Mechanism: The user accepts the AI output to the exclusion of other options
+Examples:
+    Auto-correct: Users often fail to notice or override faulty text corrections in mobile messages because they trust the system
+    Data Entry: When an algorithm pre-populates a form for a human to validate, the quality of the final decision has been found to reduce by approximately 5% due to this bias
+Inadequate Monitoring
+The second form occurs when a human fails to notice a system failure because they have stopped monitoring the system adequately
+Mechanism: The user becomes too trusting of the system's ability to operate independently and pays less attention
+Example: 
+    Demi-autonomous vehicles: occupants may not be ready to take control during an imminent accident because they have become complacent regarding the vehicle's capabilities
+Implications for Testing
+The presence of automation bias dictates specific approaches within the testing strategy
+Testing Human-System Interaction: Testers cannot simply verify the technical correctness of the system's recommendations; they must also test the quality of the corresponding human input provided by representative users
+Dynamic Testing Required: Unlike characteristics such as transparency, which can be verified via documentation, automation bias requires dynamic testing (execution of the system) to observe actual user behavior and result processing
+Risk to Testers: The sources also note that automation bias is a problem for the testing process itself, as testers may overly trust the AI system's results and fail to verify them critically
+
+Documentation in Testing
+Architectural and Design Information: Documentation outlining how AI and non-AI components interact is essential for identifying integration testing objectives. It also provides the basis for white-box testing of the system structure
+Input Data Sources and Metadata: Knowing the source of input data is required to test for explicit or implicit sample bias and the functional correctness of the system when handling untrustworthy inputs,. Sample exam questions reinforce that checking for bias is made possible by including the source of data in the documentation
+Operating Environment Specifications: This information is necessary when testing the AI-specific quality characteristics of autonomy, flexibility, and adaptability
+Adaptation Processes: For self-learning systems, documenting how the system expects to adapt to changes in its environment serves as the test basis for adaptability testing
+Expected Users: Details regarding expected users are necessary to ensure that representative testing is performed
+Typical Content of AI Component Documentation
+General & Design: Identifiers, developer details, hardware requirements, assumptions, and technical decisions
+Usage: Primary and secondary use cases, typical users, approaches to self-learning, known bias, ethical/safety issues, and decision thresholds
+Datasets: Details on features, collection methods, pre-processing requirements, labelling, privacy/security constraints, and bias/fairness data
+Training and ML Functional Performance: The specific ML algorithm used, weights, validation datasets, selected functional performance metrics (e.g., Accuracy, Recall), and the actual metric values achieved
+Testing: Descriptions of the test dataset (proving independence from training data), test results, and approaches used to test robustness, explainability, and concept drift
+Documentation and Pre-Trained Models
+The sources also note that documentation is vital when using Pre-Trained Models. Risks associated with pre-trained models—such as inherited bias or vulnerabilities to adversarial attacks—can be mitigated more easily if extensive documentation regarding the model's original training data and performance is available
+
+Concept Drift
+Definition and Causes
+Concept drift occurs when the relationship between input features and target outputs changes in the operational environment. It is characterized by the operational environment evolving without a corresponding update to the training model
+Causes: Changes can be seasonal, cultural, moral, or economic
+Examples: The sources cite the impact of marketing campaigns changing customer behaviour, or abrupt global events like the COVID-19 pandemic, which significantly affected sales projections and stock market models. Another example provided in the sample exam is an ecommerce application where a drop in the conversion rate of recommendations indicates potential concept drift due to changes in customer behaviour
+Testing and Monitoring Strategy
+Because concept drift happens after deployment, systems prone to it require a specific testing strategy focused on continuous monitoring
+Regular Evaluation: Operational models must be evaluated regularly against agreed ML functional performance criteria (such as accuracy or precision) to ensure drift is detected quickly
+Documentation: The documentation for an AI component should explicitly cover "platform and concept drift," including the approach used to test for it
+Mitigation and Retraining
+Once concept drift is detected, the sources outline specific mitigation steps
+Retiring or Retraining: Strategies include retiring the system or, more commonly, re-training the system using up-to-date training data that reflects the current environment
+Testing the Update: After re-training, the new model must undergo
+    1. Confirmatory Testing: To ensure the new model works as intended.
+    2. Regression Testing: To ensure existing functionality is maintained.
+    3. A/B Testing: This is highlighted as a key technique for handling concept drift. The updated system (Version B) is compared against the original system (Version A) to confirm that the update actually outperforms the original before full deployment.
+Distinction from Other Issues
+Overfitting/Underfitting: Overfitting and underfitting are issues identified during the development/training phase (e.g., discrepancies between training and validation data), whereas concept drift occurs operationally after the model has been deployed
+Adversarial Attacks: While both result in poor performance, adversarial attacks involve malicious inputs, whereas concept drift is a natural evolution of data patterns over time
+
+Selecting a Test Approach
+Therefore, the test approach must combine conventional testing (for non-AI components) with specialized testing (for AI components) based on a risk analysis of the specific system
+Data and Pipeline Risks
+Data Quality Issues: There is a risk that data quality is lower than expected.
+    Mitigation: Use reviews, Exploratory Data Analysis (EDA), and dynamic testing to identify issues early
+Faulty Operational Pipeline: The pipeline used in production to process data may contain defects.
+    Mitigation: Perform dynamic testing of individual pipeline components and integration testing of the complete pipeline
+Methodology and Workflow Risks
+Sub-optimal ML Workflow: Risks include a lack of up-front agreement on the workflow, poor workflow choice, or data engineers failing to follow the process.
+    Mitigation: Conduct expert reviews to prevent poor choices, and implement audits or hands-on management to ensure the workflow is followed
+Sub-optimal Model/Algorithm Selection: There is a risk that the choice of framework, algorithm, model settings, or hyperparameters is not optimal due to a lack of expertise or poor tuning.
+    Mitigation: Use expert reviews to verify decisions and management oversight to ensure evaluation and tuning steps are strictly followed
+Functional Performance Risks
+Performance Gaps (Isolation vs. Operation): A model might meet criteria when tested in isolation but fail to deliver the same performance operationally. This is often due to training data not being representative of operational data.
+    Mitigation: Have experts or users review the selected datasets to ensure they are representative
+User Dissatisfaction despite Meeting Metrics: A model might meet its functional metrics (e.g., Accuracy) but still leave users unhappy. This can happen if the wrong metric was selected (e.g., prioritizing Precision when Recall was needed) or due to concept drift.
+    Mitigation: Expert reviews of the selected metrics, experience-based testing, and frequent operational testing to detect concept drift
+Overfitting: Users may find the model works perfectly on data similar to the training set but fails on new data.
+    Mitigation: Test with an independent dataset completely separate from training data, or use experience-based testing
+Non-Functional and Quality Characteristic Risks
+Poor Service Delivery: The functional criteria are met, but the service is unsatisfactory due to ignored non-functional requirements (which extend beyond ISO/IEC 25010 for AI).
+    Mitigation: Use a risk-based approach to prioritize AI-specific quality characteristics (like fairness or robustness) and perform relevant non-functional testing
+Lack of Transparency: Users may be frustrated if they cannot understand how decisions are made.
+    Mitigation: Test for explainability, interpretability, and transparency
+Self-Learning System Risks
+Service Degradation: A self-learning system may fail to provide the expected service. This could be due to inappropriate learning data, unacceptable new functionality, or unexpected learning patterns.
+    Mitigation: Expert reviews of learning data, automated regression testing (comparing new performance against previous baselines), and experience-based testing to detect unexpected behaviors
