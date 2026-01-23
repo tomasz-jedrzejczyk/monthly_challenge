@@ -69,3 +69,24 @@ What is NOT Required
 The exam materials clarify that testing for bias does not require involving selected users who are known to be biased themselves,. Instead, the focus is on analyzing the system's output patterns across different demographic groups
 Mitigation Strategies
 The sources note that actions to reduce inappropriate bias may ironically involve deliberately introducing a positive bias to counter the existing inappropriate bias,. Additionally, extensive documentation regarding the source of input data and its metadata is required to support the testing of explicit or implicit sample bias
+
+Probabilistic and Non-Deterministic Systems
+Most probabilistic systems are also non-deterministic, meaning they do not always produce the same output or final state given the exact same set of inputs and starting state
+The Core Challenge: Multiple Valid Outcomes
+Unlike conventional deterministic software, where Input A always equals Output B, a probabilistic AI system may produce multiple valid outcomes for the same set of pre-conditions and inputs
+Variable Results: A system given the same inputs may produce different outputs on subsequent runs
+Fuzziness: This leads to a degree of "fuzziness" regarding correctness, making it difficult to define a strict pass/fail condition
+The Test Oracle Problem
+This variability creates a significant Test Oracle Problem (the difficulty in determining the correct expected result)
+Defining Expectations: It creates difficulties in defining expected results, which directly impacts the ability to reuse tests for confirmation testing and regression testing
+Reproducibility: Reproducibility of testing is compromised because the system behavior may change even if the code has not
+Automation: Automated testing becomes more complex because the automation script cannot simply compare the actual result against a single static expected result
+Mitigation Strategies and Acceptance Criteria
+To address these challenges, the sources suggest specific approaches to test design and acceptance criteria:
+Statistical Validity: Because a single definitive output is not achievable, it is often necessary to execute a test multiple times to generate a statistically valid test result
+Deep System Knowledge: Testers require a deeper understanding of the system's required behaviour to arrive at a "reasonable check" for whether a test passed, rather than simply looking for an exact value
+Tolerances: Expected results must be defined more sophisticatedly than in conventional systems. This often involves specifying limits or tolerances (e.g., "is the actual result within 2% of the optimal solution?" or defining a stopping point for a car within a maximum distance)
+Acceptance Criteria: Acceptance criteria for these systems cannot be precise; they must be documented to explicitly allow for slightly different results across test runs
+Complexity in Interacting Components
+The sources note that complexity increases when an AI-based system consists of several interacting components, each of which provides probabilistic results (e.g., a facial recognition system using one model to find a face and another to identify it)
+Multi-Agent Systems: When testing multi-agent systems, the test environment may need to incorporate a level of non-determinism to mimic the changing responses of the agents with which the system under test interacts
