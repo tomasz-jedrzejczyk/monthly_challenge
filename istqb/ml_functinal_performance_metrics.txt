@@ -1,0 +1,105 @@
+Confusion Matrix
+Fundamental tool used to evaluate the performance of Classification models (a type of Supervised Learning). Since a model rarely predicts correctly 100% of the time, the confusion matrix provides a structured way to visualize the relationship between the actual class (ground truth) and the class predicted by the model
+The Confusion Matrix
+True Positive (TP): The model correctly predicted the positive class.
+True Negative (TN): The model correctly predicted the negative class.
+False Positive (FP): The model incorrectly predicted the positive class (also known as a Type I error).
+False Negative (FN): The model incorrectly predicted the negative class (also known as a Type II error).
+
+Classification
+Specific functional performance metrics that are calculated using the values from the confusion matrix. The choice of which metric to use depends heavily on the specific goals of the system and the "cost" associated with different types of errors
+The Foundation: The Confusion Matrix
+Functional performance metrics that are calculated using the values from the confusion matrix. The choice of which metric to use depends heavily on the specific goals of the system and the "cost" associated with different types of errors
+Accuracy
+Definition: Measures the percentage of all classifications that were correct
+Usage: It is most applicable when the dataset is symmetric (where false positive and false negative counts and costs are similar). It is a poor choice if one class dominates the others (imbalanced datasets), as a model could achieve high accuracy simply by predicting the dominant class every time
+Precision
+Definition: Measures the proportion of predicted positives that were actually correct. It indicates how "sure" the model is when it claims a positive result.
+Usage: This is the suitable metric when the cost of False Positives is high.
+    Example: In a spam filter, marking a legitimate email as spam (False Positive) is highly undesirable. Therefore, high precision is required
+Recall (Sensitivity)
+Definition: Measures the proportion of actual positives that were correctly predicted. It indicates how well the model avoids missing positive cases.
+Usage: This is necessary when it is critical that positive cases are not missed (cost of False Negatives is high).
+    Example: In cancer detection, missing a true positive case (False Negative) can be fatal. Therefore, a high Recall score is essential
+F1-Score
+Definition: The harmonic mean of Precision and Recall. It provides a value between 0 and 1.
+Usage: This is most useful when there is an imbalance in the expected classes or when Precision and Recall are of similar importance. A score close to 1 indicates that false data has little influence on the result
+Advanced Visualization: ROC and AUC
+ROC Curve (Receiver Operating Characteristic): A plot illustrating the performance of a binary classifier as its discrimination threshold varies, plotting the True Positive Rate (Recall) against the False Positive Rate
+AUC (Area Under Curve): Represents the degree of separability. A higher AUC indicates the model is better at distinguishing between classes
+
+Regression
+Regression Metrics from classification metrics (such as Accuracy or Precision) because regression models predict continuous numeric outputs rather than discrete classes
+Mean Square Error (MSE)
+Definition: MSE is the statistical measure of the average of the squared differences between the estimated (predicted) values and the actual values
+Calculation Logic: By squaring the difference between the predicted and actual values, the metric ensures that positive and negative errors do not cancel each other out
+Interpretation: The value of MSE is always positive. A value closer to zero suggests a better regression model
+R-squared
+Definition: Also known as the Coefficient of Determination, this metric measures how well the regression model fits the dependent variables
+Interpretation: It represents the proportion of variance for a dependent variable that's explained by an independent variable or variables.
+    Example: In a sample exam question regarding house price prediction, an R-squared value of 0.15 indicates that the model explains only 15% of the variance in house prices.
+    Usage: Unlike MSE, which provides an absolute error value, R-Squared provides a relative measure of fit
+
+Clustering
+Clustering is a form of Unsupervised Learning. Unlike supervised learning, where predictions are compared against known labels (ground truth), clustering involves identifying similarities in input data to group them based on common characteristics without pre-existing labels
+Intra-Cluster Metrics
+These metrics track the similarity of data points within a specific cluster. They essentially measure how "tight" or cohesive a cluster is; the closer the points are to each other within the group, the better.
+Inter-Cluster Metrics
+These metrics measure the similarity (or distance) of data points in different clusters. They evaluate how well-separated the different groups are from one another. Ideally, different clusters should be distinct and far apart.
+The Silhouette Coefficient (Silhouette Score)
+The sources highlight the Silhouette Coefficient as a key combined metric for clustering. It is calculated based on the average inter-cluster and intra-cluster distances
+Definition: It measures how similar a data point is to its own cluster (cohesion) compared to other clusters (separation)
+Range: The score produces a value between -1 and +1
+Interpretation:
+    +1 (Best): Indicates that the clusters are well-separated and the data point is appropriate for its cluster.
+    0: Implies random clustering.
+    -1 (Worst): Indicates that data points have arguably been assigned to the wrong clusters
+
+Limitations
+Regarding the use of metrics such as Accuracy, Precision, Recall, and MSE. While these metrics are essential for evaluating whether a model predicts correctly, they are not sufficient for a complete quality assessment of an AI-based system
+Restriction to Functionality Only
+The primary limitation is that these metrics measure only the functionality of the model (e.g., the correctness of its predictions)
+Non-Functional Blindness: They do not take into account non-functional quality characteristics defined in ISO 25010, such as performance efficiency. This means a model could have high accuracy but be unacceptably slow or consume too much memory.
+AI-Specific Blindness: They do not measure critical AI-specific characteristics defined in Chapter 2, such as explainability, flexibility, or autonomy. A model might achieve a high F1-score but be completely opaque (lack explainability) or fail to adapt to new environments.
+Dependency on Data Quality (Ground Truth)
+For supervised learning, these metrics are calculated based on labeled data. Consequently, the validity of the metric is entirely dependent on the quality of those labels.
+Mislabeled Data: If the "ground truth" labels are incorrect, the functional performance measurements might indicate a high-quality model, but the model will produce incorrect outputs in the real world
+Bias: If the data used to calculate these metrics is not representative (i.e., it contains sample bias), the resulting metrics will be misleading. A model might show 99% accuracy on a biased validation set but fail in production
+Scope Limitation (Model vs. System)
+These metrics evaluate only the ML model component, not the entire AI-based system
+Component Isolation: An AI system includes other components, such as the data pipeline and user interfaces. The ML functional performance metrics do not evaluate the quality of the data pipeline or how the model integrates with the rest of the system
+Tool Dependency
+ML functional performance metrics are complex enough that they can be measured effectively only by using tools
+
+Selection of Metrics
+It is not normal to build a machine learning model that achieves the highest rank for all functional performance metrics simultaneously,. Therefore, the most suitable metric must be selected as the acceptance criteria based on the specific goals, risks, and expected use of the system,.
+1.Selection Criteria for Classification Metrics
+Accuracy
+When to select: This metric is applicable when the dataset is symmetric, meaning the counts and costs of False Positives and False Negatives are similar
+When to avoid: It is a poor choice when one class dominates the others (imbalanced datasets). In such cases, a model can achieve high accuracy simply by predicting the dominant class, which instils false confidence in the positive outcome
+Precision
+When to select: This is the suitable measure when the cost of False Positives is high and high confidence in a positive prediction is required
+Example: In a spam filter, classifying a legitimate email as spam (False Positive) is highly undesirable. Therefore, high precision is selected to ensure users do not lose important emails
+Scenario Application: In a sample exam scenario regarding an app that determines if a dog is hungry, the cost of a False Positive (overfeeding the dog leading to health issues) is high. Therefore, Precision is the correct metric to prioritize
+Recall (Sensitivity)
+When to select: This is necessary when it is critical that positive cases are not missed (i.e., the cost of a False Negative is high)
+Example: In cancer detection, missing a true positive result (False Negative) and marking a sick patient as healthy is unacceptable. A high Recall score is essential here
+Scenario Application: In a music recommendation system where the goal is to recommend as many songs as possible that a user might like (even at the cost of showing some irrelevant ones), Recall is the preferred metric because missing a good song is the primary concern
+F1-Score
+When to select: This metric is most useful when there is an imbalance in the expected classes or when Precision and Recall are of similar importance,. It is the harmonic mean of Precision and Recall, providing a single score that balances both
+2.Selection for Other ML Types
+Supervised Regression: When the output is a continuous number, metrics such as Mean Square Error (MSE) and R-squared should be selected
+Unsupervised Clustering: When the problem involves grouping similar data without labels, metrics such as Inter-cluster metrics, Intra-cluster metrics, and the Silhouette Coefficient are appropriate
+3.Acceptance Criteria
+The selection process ultimately informs the acceptance criteria for the AI model. For example, if minimizing false positives is the priority, a specific high value for Precision will be set as the acceptance criterion, whereas if minimizing false negatives is the priority, a high Recall value will be required
+
+Benchmark Suites
+Because new AI technologies and frameworks are published regularly, it can be difficult to measure their relative effectiveness,. Benchmark suites address this by covering a broad range of application areas to evaluate performance across different hardware platforms, software frameworks, and cloud platforms
+Key Metrics Measured
+Unlike the functional metrics derived from the Confusion Matrix (like Precision or Recall), Benchmark Suites often focus on the speed and efficiency of the technology alongside its accuracy.
+Training Time: This measures how quickly a framework can train an ML model using a specified training dataset to reach a specific target quality metric (e.g., achieving 75% accuracy),. Sample exam questions reinforce that benchmark suites are specifically used to indicate training time, rather than testing, validation, or deployment times,.
+Inference Time: This measures how fast a trained ML model can perform a prediction (inference),.
+Examples of Benchmark Suites
+MLCommons: Previously known as MLPerf, this is a not-for-profit organization formed in 2020 that provides benchmarks for software frameworks, AI-specific processors, and ML cloud platforms
+DAWNBench: A benchmark suite provided by Stanford University
+MLMark: Provided by the Embedded Microprocessor Benchmark Consortium, this suite is designed to measure the performance and accuracy of embedded inference

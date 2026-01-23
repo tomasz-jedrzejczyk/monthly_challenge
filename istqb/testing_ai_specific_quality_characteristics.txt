@@ -1,0 +1,129 @@
+The specific challenges associated with testing self-learning systems
+Unexpected Changes and Regression Issues
+The primary characteristic of a self-learning system is that it changes itself. While the initial requirements are known, information regarding the specific changes the system makes to itself is often unavailable
+Test Validity: A significant challenge is that tests which previously passed may fail after the system updates itself, or the results may change
+Regression: This creates a constant regression testing problem. Testers must design tests that remain relevant even as the system evolves, or constantly design new tests based on observed behaviors
+Complex Acceptance Criteria
+Defining what constitutes "success" for a system that changes is difficult.
+Improvement Metrics: It is often necessary to define expectations for improvement. For instance, a requirement might state that if the system changes, its functional performance must improve by a minimum percentage (e.g., 10%)
+Environmental Links: Acceptance criteria may need to be linked to specific environmental factors, requiring complex specifications and the maintenance of a continuous baseline of system performance
+Insufficient Testing Time
+A self-learning system may adapt quickly to new situations.
+Speed of Adaptation: If the system changes rapidly, there may be insufficient time to manually execute tests to verify the new behavior
+Automation Necessity: To address this, testers typically need to create tests that can run automatically immediately after the system modifies itself
+Resource Requirements
+The process of learning and adapting consumes computing resources.
+Resource Constraints: Requirements must specify acceptance criteria for the resources (e.g., memory, processing time) the system is permitted to use while learning
+Trade-offs: Testers must verify if the resource usage is justified by a measurable improvement in functionality
+Insufficient Specification of the Operational Environment
+A self-learning system reacts to its environment. If the environmental inputs are outside expected ranges (or were not represented in training data), the system may learn incorrect behaviors
+Data Poisoning: Unexpected inputs might actually be attacks (data poisoning), causing the system to mis-learn
+Test Coverage: It is difficult to predict the full range of operational changes to identify a full set of representative test cases
+Complex Test Environments
+To test the system's ability to adapt, the test environment must be capable of mimicking high-risk operational changes
+Simulation: This implies a need for complex test tools, such as fault injection, or access to diverse physical environments to manipulate sensors and inputs
+Randomness: Test environments may need to incorporate a level of randomness to simulate undefined environmental changes
+Undesirable Behavior Modifications (The "Observer Effect")
+There is a risk that the act of testing itself modifies the system.
+Gaming the Tests: If a self-learning system is subjected to the exact same tests repeatedly (e.g., a third-party system or a live production system), it may "learn" to respond effectively to those specific tests
+Long-term Impact: This adaptation to the test suite can influence the system's long-term behavior adversely, essentially overfitting to the tests rather than the real-world task
+Mitigation Strategies
+Automated Continuous Testing: Essential for systems that change faster than humans can test manually
+A/B Testing: This technique allows for the comparison of the updated system (Variant B) against the previous version (Variant A) to confirm that the self-learning has actually improved performance before the change is accepted
+Automated Regression Testing: Implementing automated regression suites that include performance comparisons against previous baselines to detect if new self-learnt functionality is unacceptable
+
+Autonomous Systems
+Systems capable of working without human oversight or control for sustained periods. However, the sources emphasize that "full autonomy" is rarely desired or achieved (e.g., self-driving cars are officially classified as having "full driving automation" rather than being fully autonomous)
+Therefore, testing focuses heavily on the boundaries of autonomy—specifically the system's decision-making process regarding when to operate independently and when to cede control back to a human.
+Testing the Decision to Intervene (Handing Over Control)
+The critical challenge in testing autonomy is verifying that the system correctly identifies the conditions under which it can no longer operate safely or effectively
+Necessary Intervention: Tests must verify that the system requests human assistance when it exceeds the boundaries of its operational envelope or when the operational environment changes significantly
+Unnecessary Intervention: Conversely, testers must verify that the system does not request human intervention when it should still be capable of working autonomously
+Time-Based Constraints: Testing may need to verify that the system requests human assistance after a specified period of time has elapseds
+Test Techniques and Challenges
+Boundary Value Analysis (BVA): The sources suggest applying BVA to the operating environment to generate the necessary test conditions,. This helps define the "edges" of the system's autonomous capabilities.
+Defining Parameters: A major challenge is defining the physical parameters of autonomy in an operating environment and creating test scenarios that depend on these parameters
+Virtual Environments: Because autonomy often involves responding to hazardous environments or extreme edge cases, virtual test environments and simulators are frequently required to push the system to its limits without endangering humans or equipment
+Acceptance Criteria
+Operational Envelope: Acceptance criteria should check how the system responds when forced outside the operational envelope in which it is expected to be fully autonomous
+Persuasion: Criteria should check whether the system can be "persuaded" to request human intervention when it should be fully autonomous (i.e., testing the robustness of its decision to remain autonomous)
+Sustained Operation: Testing may require checking the system over a specific, sustained period to verify how often it requires intervention
+Risk Factors
+The sources note that autonomous systems often use AI components (like Deep Learning) for sensing and decision-making. Testing must ensure that the system recognizes situations where autonomy should be ceded back to human operators, such as during edge-case scenarios or emergency situations
+
+Testing for bias
+Types of Bias to Test
+Algorithmic Bias: This occurs if the learning algorithm is wrongfully configured or overvalues certain data. Testing involves analysis during model training, evaluation, and tuning (e.g., hyperparameter tuning) to identify if the algorithm itself is introducing bias
+Sample Bias: This occurs when the training data is not fully representative of the operational data space (e.g., uneven sampling or historic bias). Testing involves reviewing the data source and acquisition procedures, as well as reviewing data pre-processing steps to ensure they haven't distorted the data to create bias
+Inappropriate Bias: This refers to unfair treatment based on protected characteristics (e.g., race, gender, age). Testing focuses on ensuring the system does not produce results that lead to adverse effects for specific groups
+Specific Testing Techniques
+Independent Data Testing: Using an independent, bias-free test dataset is a primary method for detecting bias,. However, the sources note it is difficult to identify exactly which data causes the bias because algorithms often combine unrelated features to generate unwanted bias
+Dynamic Testing (Input Perturbation): This involves measuring how changes in system inputs affect outputs over a large number of interactions. Testers examine results based on groups of people or objects the system might be biased against. This approach is similar to the LIME method (Local Interpretable Model-Agnostic Explanations)
+External Validity Testing (Hidden Variables): A critical testing activity involves obtaining additional information (such as demographic data) that correlates to the results but is not an explicit input to the model. This is necessary because bias can be based on "hidden" variables inferred by the algorithm. Testers correlate this external data with system results to check for inappropriate bias against specific groups
+A/B Testing: This can be used to check if an updated system has been "poisoned" or biased compared to a previous version
+Acceptance Criteria for Bias
+Independent Test Suites: Verification that testing using an independent, bias-free test suite shows no biass
+External Comparisons: Verification that test results show no bias on inferred variables when compared using external data (e.g., census data)
+Expert Reviews: Reviews by domain experts to identify potential bias
+What is NOT Required
+The exam materials clarify that testing for bias does not require involving selected users who are known to be biased themselves,. Instead, the focus is on analyzing the system's output patterns across different demographic groups
+Mitigation Strategies
+The sources note that actions to reduce inappropriate bias may ironically involve deliberately introducing a positive bias to counter the existing inappropriate bias,. Additionally, extensive documentation regarding the source of input data and its metadata is required to support the testing of explicit or implicit sample bias
+
+Probabilistic and Non-Deterministic Systems
+Most probabilistic systems are also non-deterministic, meaning they do not always produce the same output or final state given the exact same set of inputs and starting state
+The Core Challenge: Multiple Valid Outcomes
+Unlike conventional deterministic software, where Input A always equals Output B, a probabilistic AI system may produce multiple valid outcomes for the same set of pre-conditions and inputs
+Variable Results: A system given the same inputs may produce different outputs on subsequent runs
+Fuzziness: This leads to a degree of "fuzziness" regarding correctness, making it difficult to define a strict pass/fail condition
+The Test Oracle Problem
+This variability creates a significant Test Oracle Problem (the difficulty in determining the correct expected result)
+Defining Expectations: It creates difficulties in defining expected results, which directly impacts the ability to reuse tests for confirmation testing and regression testing
+Reproducibility: Reproducibility of testing is compromised because the system behavior may change even if the code has not
+Automation: Automated testing becomes more complex because the automation script cannot simply compare the actual result against a single static expected result
+Mitigation Strategies and Acceptance Criteria
+To address these challenges, the sources suggest specific approaches to test design and acceptance criteria:
+Statistical Validity: Because a single definitive output is not achievable, it is often necessary to execute a test multiple times to generate a statistically valid test result
+Deep System Knowledge: Testers require a deeper understanding of the system's required behaviour to arrive at a "reasonable check" for whether a test passed, rather than simply looking for an exact value
+Tolerances: Expected results must be defined more sophisticatedly than in conventional systems. This often involves specifying limits or tolerances (e.g., "is the actual result within 2% of the optimal solution?" or defining a stopping point for a car within a maximum distance)
+Acceptance Criteria: Acceptance criteria for these systems cannot be precise; they must be documented to explicitly allow for slightly different results across test runs
+Complexity in Interacting Components
+The sources note that complexity increases when an AI-based system consists of several interacting components, each of which provides probabilistic results (e.g., a facial recognition system using one model to find a face and another to identify it)
+Multi-Agent Systems: When testing multi-agent systems, the test environment may need to incorporate a level of non-determinism to mimic the changing responses of the agents with which the system under test interacts
+
+Complex AI-Based Systems
+Implement tasks too intricate for humans to perform manually or possess internal structures that are incomprehensible to humans. These characteristics introduce specific testing challenges that distinguish them from conventional software.
+The Test Oracle Problem
+The primary challenge arising from complexity is the Test Oracle Problem—the inability to determine the expected result of a test.
+Human Limitations: AI systems are often employed to identify patterns in large volumes of data (Big Data) specifically because humans cannot find these patterns manually
+Result Verification: Because the tester cannot replicate the task manually to determine the "ground truth," they cannot easily verify if the system's output is correct
+Ineffectiveness of White-Box Testing
+While conventional complex systems can often be understood by examining their code, AI systems present a different barrier.
+Generated Structure: The internal structure of an AI system (e.g., a deep neural network) is often generated by software (algorithms) rather than explicitly written by programmers
+Black-Box Necessity: This internal structure is so complex that even if it is visible to the tester (transparency), it provides no useful information to assist with testing. Consequently, these systems must often be tested as black boxes regardless of access level
+Complex Component Interactions
+Complexity is exacerbated when an AI-based system is composed of multiple interacting components, particularly when those components are probabilistic or non-deterministic
+Multi-Model Systems: The sources provide the example of a facial recognition system that uses one model to identify the presence of a face in an image and a second model to recognize whose face it is
+Risk Identification: The interactions between these AI components can be difficult to comprehend, making it challenging for testers to identify all risks and design tests that verify the system adequately
+Coverage and Prediction Difficulties
+Sample exam questions highlight that the complexity of these systems leads to specific difficulties in planning and prediction
+Predicting Behavior: It becomes difficult to understand interactions between components and predict system behavior
+Test Coverage: Creating enough tests to achieve effective coverage is a recognized challenge caused by the complexity of AI-based systems
+
+XAI (Explainable AI)
+Discipline aimed at ensuring users can trust and understand AI-based systems. This is critical because AI systems are often perceived as "black boxes" where even the developers may not fully understand how results are derived
+Transparency
+Transparency refers to the ease with which the algorithm and training data used to generate the model can be determined
+Testing Approach: Testing transparency does not require the execution of the system (dynamic testing). Instead, it involves reviews comparing the documentation regarding data and algorithms against the actual implementation to determine how closely they match
+Testing Challenges: When documentation regarding training data sources, labelling methods, or design is unavailable (low transparency), testers are forced to rely on black-box testing, making it difficult to identify risks such as gaps in training data
+Acceptance Criteria: Verification that it is easy to access full documentation on the algorithm and dataset
+Interpretability
+Interpretability is defined as the level of understanding of the underlying AI technology by various stakeholders, including users
+Testing Approach: Because interpretability is subjective and depends heavily on the stakeholder's technical capability (e.g., a data scientist vs. a layperson), testing typically takes the form of user surveys and questionnaires
+Trade-offs: The sources note that achieving high interpretability (e.g., using simple rule-based models) often requires a trade-off against accuracy (e.g., avoiding complex deep neural networks)
+Acceptance Criteria: Confirmation from users (or people with a similar background) that they understand the underlying technology
+Explainability
+Explainability is the ease with which users can determine how the AI-based system arrived at a particular result. This is often low in ML systems because the model is generated by an algorithm rather than explicit human logic
+Testing Approach: Unlike transparency, testing explainability generally requires dynamic testing (execution) of the ML model
+Techniques (LIME): The sources highlight the LIME method (Local Interpretable Model-Agnostic Explanations). This involves applying small changes (perturbations) to input data and analyzing how the output changes to understand the relationship between specific inputs and outputs. This allows testers to visualize how features influence decisions
+Acceptance Criteria: Users agree that it is clear how changes to inputs affect system outputs

@@ -1,0 +1,52 @@
+Neural Networks
+models inspired by the human brain, designed to perform specific tasks through a learning process involving connected units called artificial neurons (or nodes)
+Structure and Architecture
+The Perceptron: This is the simplest implementation, consisting of a single layer (one neuron). It is typically used for supervised learning classifiers to determine if an input belongs to a specific class
+Deep Neural Networks (DNN): Most modern networks are DNNs, also known as multi-layer perceptrons. They comprise three specific types of layers:
+1. Input Layer: Receives raw data, such as pixel values from a camera
+2. Hidden Layers: Located between input and output layers, these contain artificial neurons where the computation occurs
+3. Output Layer: Delivers the final result, such as a probability score indicating whether an image contains a specific object
+Neuron Functionality
+The neurons in one layer are connected to neurons in the subsequent layer. The sources detail the specific mathematical components used to calculate an Activation Value
+Weights: Each connection has a variable weight that determines the importance of the input. These weights are adjusted as the network learns
+Bias: Each neuron has a pre-set constant value called a bias. The sources explicitly state that this mathematical bias is distinct from the ethical or statistical "bias" (like sample bias) discussed in Chapter 2
+Activation Function: This function uses the inputs from the previous layer, the connection weights, and the neuron's bias to calculate the activation value, which typically ranges between -1 (indicating the neuron is "disinterested") and +1 (indicating the neuron is "very interested")
+The Learning Process
+Training a neural network involves a feedback loop known as backpropagation (backward error propagation):
+1. Training data passes through the network to generate an output,.
+2. This output is compared to the known correct result (the label),.
+3. The difference (error) is calculated and fed back through the network,.
+4. The weights of the connections are modified to minimize this error,.
+5. This process repeats (an iteration of the full dataset is called an epoch) until the output is considered accurate enough,.
+Testing: Coverage Measures
+The sources emphasize that traditional white-box coverage metrics (like statement or branch coverage) are ineffective for neural networks because the same code executes regardless of the input,. Instead, testing relies on metrics based on the activation values of the neurons
+Neuron Coverage: Requires that a neuron achieves an activation value greater than zero. It is easy to achieve (often 100%) and is primarily useful as a warning signal if not reached
+Threshold Coverage: Requires a neuron to achieve an activation value greater than a specified threshold (e.g., 0.75). This concept originated from the DeepXplore framework to identify incorrect corner case behaviors
+Sign-Change Coverage: Requires test cases to cause a neuron to output both positive and negative activation values
+Value-Change Coverage: Requires a neuron to achieve two different activation values where the difference exceeds a chosen amount
+Sign-Sign Coverage: Focuses on pairs of neurons in adjacent layers. It requires proving that changing the sign of a neuron in the first layer causes a sign change in a neuron in the second layer, while other neurons remain unchanged. The sources compare this conceptually to MC/DC (Modified Condition/Decision Coverage) in traditional software testing
+
+Coverage for Neural Networks
+Because Neural Networks rely on data and weights rather than explicit logic paths, traditional white-box testing metrics are considered ineffective, necessitating new measures based on neuron activation values.
+The Inadequacy of Traditional Coverage
+The sources emphasize that traditional white-box coverage criteria—such as statement coverage, branch coverage, and Modified Condition/Decision Coverage (MC/DC)—are standard and often mandatory for safety-related applications (e.g., ISO 26262) involving imperative source code
+However, these metrics provide little value for testing Neural Networks. This is because the underlying code that executes the network is static; the same code runs every time the network processes an input,. Therefore, achieving 100% statement coverage is trivial and does not indicate that the logic of the model (which resides in the weights and biases) has been thoroughly tested
+Neural Network Coverage Measures
+To address this, researchers have proposed coverage measures based on the internal structure of the neural network, specifically focusing on the activation values of the artificial neurons
+Neuron Coverage
+Effectiveness: The sources note that this is very easy to achieve in practice; research indicates that nearly 100% neuron coverage is often achieved with very few test cases
+Usage: Its primary utility is as a "warning signal" or alarm if 100% coverage is not reached, rather than a proof of rigorous testing
+Threshold Coverage
+Definition: This requires that a neuron achieves an activation value greater than a specified threshold (e.g., 0.75)
+Context: This concept originated from researchers behind the DeepXplore framework, who used a threshold to identify incorrect corner-case behaviors. The syllabus distinguishes this from standard "Neuron Coverage" (which essentially uses a threshold of 0) to allow for more rigorous testing criteria
+Sign-Change Coverage
+Definition: To achieve this, test cases must cause a neuron to output both positive and negative activation values
+Goal: It proves the neuron has been exercised in both its "interested" (positive) and "disinterested" (negative) states
+Value-Change Coverage
+Definition: This requires a neuron to achieve two different activation values where the difference between them exceeds a chosen amount
+Goal: This ensures the neuron is not just active, but reacting with significant variance to different inputs
+Sign-Sign Coverage
+Definition: This is a more complex metric focusing on pairs of neurons in neighboring layers. It requires proving that changing the sign of a neuron in the first layer causes a sign change in a specific neuron in the second layer, while the signs of all other neurons in the second layer remain unchanged
+Analogy: The sources explicitly compare this concept to MC/DC (Modified Condition/Decision Coverage) used in traditional safety-critical software testing
+Maturity of the Field
+The sources highlight that coverage for neural networks is a nascent research field, with academic papers appearing largely since 2017,. Consequently, there is currently little objective data or duplicated research to definitively prove the effectiveness of these measures compared to traditional techniques
