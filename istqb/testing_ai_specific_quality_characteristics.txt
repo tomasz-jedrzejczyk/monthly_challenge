@@ -31,3 +31,41 @@ Mitigation Strategies
 Automated Continuous Testing: Essential for systems that change faster than humans can test manually
 A/B Testing: This technique allows for the comparison of the updated system (Variant B) against the previous version (Variant A) to confirm that the self-learning has actually improved performance before the change is accepted
 Automated Regression Testing: Implementing automated regression suites that include performance comparisons against previous baselines to detect if new self-learnt functionality is unacceptable
+
+Autonomous Systems
+Systems capable of working without human oversight or control for sustained periods. However, the sources emphasize that "full autonomy" is rarely desired or achieved (e.g., self-driving cars are officially classified as having "full driving automation" rather than being fully autonomous)
+Therefore, testing focuses heavily on the boundaries of autonomy—specifically the system's decision-making process regarding when to operate independently and when to cede control back to a human.
+Testing the Decision to Intervene (Handing Over Control)
+The critical challenge in testing autonomy is verifying that the system correctly identifies the conditions under which it can no longer operate safely or effectively
+Necessary Intervention: Tests must verify that the system requests human assistance when it exceeds the boundaries of its operational envelope or when the operational environment changes significantly
+Unnecessary Intervention: Conversely, testers must verify that the system does not request human intervention when it should still be capable of working autonomously
+Time-Based Constraints: Testing may need to verify that the system requests human assistance after a specified period of time has elapseds
+Test Techniques and Challenges
+Boundary Value Analysis (BVA): The sources suggest applying BVA to the operating environment to generate the necessary test conditions,. This helps define the "edges" of the system's autonomous capabilities.
+Defining Parameters: A major challenge is defining the physical parameters of autonomy in an operating environment and creating test scenarios that depend on these parameters
+Virtual Environments: Because autonomy often involves responding to hazardous environments or extreme edge cases, virtual test environments and simulators are frequently required to push the system to its limits without endangering humans or equipment
+Acceptance Criteria
+Operational Envelope: Acceptance criteria should check how the system responds when forced outside the operational envelope in which it is expected to be fully autonomous
+Persuasion: Criteria should check whether the system can be "persuaded" to request human intervention when it should be fully autonomous (i.e., testing the robustness of its decision to remain autonomous)
+Sustained Operation: Testing may require checking the system over a specific, sustained period to verify how often it requires intervention
+Risk Factors
+The sources note that autonomous systems often use AI components (like Deep Learning) for sensing and decision-making. Testing must ensure that the system recognizes situations where autonomy should be ceded back to human operators, such as during edge-case scenarios or emergency situations
+
+Testing for bias
+Types of Bias to Test
+Algorithmic Bias: This occurs if the learning algorithm is wrongfully configured or overvalues certain data. Testing involves analysis during model training, evaluation, and tuning (e.g., hyperparameter tuning) to identify if the algorithm itself is introducing bias
+Sample Bias: This occurs when the training data is not fully representative of the operational data space (e.g., uneven sampling or historic bias). Testing involves reviewing the data source and acquisition procedures, as well as reviewing data pre-processing steps to ensure they haven't distorted the data to create bias
+Inappropriate Bias: This refers to unfair treatment based on protected characteristics (e.g., race, gender, age). Testing focuses on ensuring the system does not produce results that lead to adverse effects for specific groups
+Specific Testing Techniques
+Independent Data Testing: Using an independent, bias-free test dataset is a primary method for detecting bias,. However, the sources note it is difficult to identify exactly which data causes the bias because algorithms often combine unrelated features to generate unwanted bias
+Dynamic Testing (Input Perturbation): This involves measuring how changes in system inputs affect outputs over a large number of interactions. Testers examine results based on groups of people or objects the system might be biased against. This approach is similar to the LIME method (Local Interpretable Model-Agnostic Explanations)
+External Validity Testing (Hidden Variables): A critical testing activity involves obtaining additional information (such as demographic data) that correlates to the results but is not an explicit input to the model. This is necessary because bias can be based on "hidden" variables inferred by the algorithm. Testers correlate this external data with system results to check for inappropriate bias against specific groups
+A/B Testing: This can be used to check if an updated system has been "poisoned" or biased compared to a previous version
+Acceptance Criteria for Bias
+Independent Test Suites: Verification that testing using an independent, bias-free test suite shows no biass
+External Comparisons: Verification that test results show no bias on inferred variables when compared using external data (e.g., census data)
+Expert Reviews: Reviews by domain experts to identify potential bias
+What is NOT Required
+The exam materials clarify that testing for bias does not require involving selected users who are known to be biased themselves,. Instead, the focus is on analyzing the system's output patterns across different demographic groups
+Mitigation Strategies
+The sources note that actions to reduce inappropriate bias may ironically involve deliberately introducing a positive bias to counter the existing inappropriate bias,. Additionally, extensive documentation regarding the source of input data and its metadata is required to support the testing of explicit or implicit sample bias
